@@ -102,7 +102,7 @@
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.labelComponent);
             this.Name = "FormPackageComponent";
-            this.Text = "Компонент изделия";
+            this.Text = "Компонент пакета";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -13,18 +13,17 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
         {
             _componentStorage = componentStorage;
         }
+
         public List<ComponentViewModel> Read(ComponentBindingModel model)
         {
             if (model == null)
             {
                 return _componentStorage.GetFullList();
             }
-
             if (model.Id.HasValue)
             {
                 return new List<ComponentViewModel> { _componentStorage.GetElement(model) };
             }
-
             return _componentStorage.GetFilteredList(model);
         }
 
@@ -36,7 +35,6 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             {
                 throw new Exception("Уже есть компонент с таким названием");
             }
-
             if (model.Id.HasValue)
             {
                 _componentStorage.Update(model);
@@ -55,7 +53,6 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             {
                 throw new Exception("Элемент не найден");
             }
-
             _componentStorage.Delete(model);
         }
     }

@@ -19,7 +19,6 @@ namespace SoftwareInstallationImplement
         public List<PackageViewModel> GetFullList()
         {
             List<PackageViewModel> result = new List<PackageViewModel>();
-
             foreach (var product in source.Packages)
             {
                 result.Add(CreateModel(product));
@@ -35,7 +34,6 @@ namespace SoftwareInstallationImplement
             }
 
             List<PackageViewModel> result = new List<PackageViewModel>();
-
             foreach (var product in source.Packages)
             {
                 if (product.PackageName.Contains(model.PackageName))
@@ -52,7 +50,6 @@ namespace SoftwareInstallationImplement
             {
                 return null;
             }
-
             foreach (var product in source.Packages)
             {
                 if (product.Id == model.Id || product.PackageName == model.PackageName)
@@ -88,7 +85,6 @@ namespace SoftwareInstallationImplement
                     tempProduct = product;
                 }
             }
-
             if (tempProduct == null)
             {
                 throw new Exception("Элемент не найден");
@@ -121,7 +117,6 @@ namespace SoftwareInstallationImplement
                     product.PackageComponents.Remove(key);
                 }
             }
-
             foreach (var component in model.PackageComponents)
             {
                 if (product.PackageComponents.ContainsKey(component.Key))
@@ -143,7 +138,6 @@ namespace SoftwareInstallationImplement
             foreach (var pc in product.PackageComponents)
             {
                 string componentName = string.Empty;
-
                 foreach (var component in source.Components)
                 {
                     if (pc.Key == component.Id)

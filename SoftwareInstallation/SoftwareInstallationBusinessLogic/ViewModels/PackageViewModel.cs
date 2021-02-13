@@ -7,7 +7,7 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
     {
         public int Id { get; set; }
 
-        [DisplayName("Название изделия")]
+        [DisplayName("Название пакета")]
         public string PackageName { get; set; }
 
         [DisplayName("Цена")]

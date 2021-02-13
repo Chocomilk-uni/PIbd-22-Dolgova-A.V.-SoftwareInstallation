@@ -21,12 +21,10 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             {
                 return _packageStorage.GetFullList();
             }
-
             if (model.Id.HasValue)
             {
                 return new List<PackageViewModel> { _packageStorage.GetElement(model) };
             }
-
             return _packageStorage.GetFilteredList(model);
         }
 
@@ -42,9 +40,8 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
 
             if (element != null && element.Id != model.Id)
             {
-                throw new Exception("Уже есть продукт с таким названием");
+                throw new Exception("Уже есть пакет с таким названием");
             }
-
             if (model.Id.HasValue)
             {
                 _packageStorage.Update(model);
@@ -67,7 +64,6 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             {
                 throw new Exception("Элемент не найден");
             }
-
             _packageStorage.Delete(model);
         }
     }

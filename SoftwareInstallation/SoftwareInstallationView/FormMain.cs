@@ -47,20 +47,20 @@ namespace SoftwareInstallationView
             form.ShowDialog();
         }
 
-        private void ИзделияToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ПакетыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormPackage>();
             form.ShowDialog();
         }
 
-        private void buttonCreateOrder_Click(object sender, EventArgs e)
+        private void ButtonCreateOrder_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormCreateOrder>();
             form.ShowDialog();
             LoadData();
         }
 
-        private void buttonTakeOrderInWork_Click(object sender, EventArgs e)
+        private void ButtonTakeOrderInWork_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -78,7 +78,7 @@ namespace SoftwareInstallationView
             }
         }
 
-        private void buttonOrderReady_Click(object sender, EventArgs e)
+        private void ButtonOrderReady_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -96,7 +96,7 @@ namespace SoftwareInstallationView
             }
         }
 
-        private void buttonPayOrder_Click(object sender, EventArgs e)
+        private void ButtonPayOrder_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -114,7 +114,7 @@ namespace SoftwareInstallationView
             }
         }
 
-        private void buttonRef_Click(object sender, EventArgs e)
+        private void ButtonRef_Click(object sender, EventArgs e)
         {
             LoadData();
         }

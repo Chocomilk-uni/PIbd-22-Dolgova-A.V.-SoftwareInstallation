@@ -24,7 +24,6 @@ namespace SoftwareInstallationImplement
             order.Status = model.Status;
             order.DateCreate = model.DateCreate;
             order.DateImplement = model.DateImplement;
-
             return order;
         }
 
@@ -59,7 +58,6 @@ namespace SoftwareInstallationImplement
             {
                 return null;
             }
-
             List<OrderViewModel> result = new List<OrderViewModel>();
             foreach (var order in source.Orders)
             {
@@ -77,7 +75,6 @@ namespace SoftwareInstallationImplement
             {
                 return null;
             }
-
             foreach (var order in source.Orders)
             {
                 if (order.Id == model.Id)
@@ -85,7 +82,6 @@ namespace SoftwareInstallationImplement
                     return CreateModel(order);
                 }
             }
-
             return null;
         }
 
@@ -95,7 +91,6 @@ namespace SoftwareInstallationImplement
             {
                 Id = 1
             };
-
             foreach (var order in source.Orders)
             {
                 if (order.Id >= tempOrder.Id)
@@ -103,7 +98,6 @@ namespace SoftwareInstallationImplement
                     tempOrder.Id = order.Id + 1;
                 }
             }
-
             source.Orders.Add(CreateModel(model, tempOrder));
         }
 
@@ -118,12 +112,10 @@ namespace SoftwareInstallationImplement
                     tempOrder = order;
                 }
             }
-
             if (tempOrder == null)
             {
                 throw new Exception("Элемент не найден");
             }
-
             CreateModel(model, tempOrder);
         }
 
@@ -137,7 +129,6 @@ namespace SoftwareInstallationImplement
                     return;
                 }
             }
-
             throw new Exception("Элемент не найден");
         }
     }

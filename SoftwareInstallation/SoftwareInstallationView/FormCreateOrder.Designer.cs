@@ -30,7 +30,7 @@
         {
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.labelProduct = new System.Windows.Forms.Label();
+            this.labelPackage = new System.Windows.Forms.Label();
             this.labelCount = new System.Windows.Forms.Label();
             this.labelSum = new System.Windows.Forms.Label();
             this.comboBoxPackage = new System.Windows.Forms.ComboBox();
@@ -58,14 +58,14 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
-            // labelProduct
+            // labelPackage
             // 
-            this.labelProduct.AutoSize = true;
-            this.labelProduct.Location = new System.Drawing.Point(13, 13);
-            this.labelProduct.Name = "labelProduct";
-            this.labelProduct.Size = new System.Drawing.Size(54, 13);
-            this.labelProduct.TabIndex = 2;
-            this.labelProduct.Text = "Изделие:";
+            this.labelPackage.AutoSize = true;
+            this.labelPackage.Location = new System.Drawing.Point(13, 13);
+            this.labelPackage.Name = "labelPackage";
+            this.labelPackage.Size = new System.Drawing.Size(41, 13);
+            this.labelPackage.TabIndex = 2;
+            this.labelPackage.Text = "Пакет:";
             // 
             // labelCount
             // 
@@ -121,7 +121,7 @@
             this.Controls.Add(this.comboBoxPackage);
             this.Controls.Add(this.labelSum);
             this.Controls.Add(this.labelCount);
-            this.Controls.Add(this.labelProduct);
+            this.Controls.Add(this.labelPackage);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Name = "FormCreateOrder";
@@ -136,7 +136,7 @@
 
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.Label labelProduct;
+        private System.Windows.Forms.Label labelPackage;
         private System.Windows.Forms.Label labelCount;
         private System.Windows.Forms.Label labelSum;
         private System.Windows.Forms.ComboBox comboBoxPackage;

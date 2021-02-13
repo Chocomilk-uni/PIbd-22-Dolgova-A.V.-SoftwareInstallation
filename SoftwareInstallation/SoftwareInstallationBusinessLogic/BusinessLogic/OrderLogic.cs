@@ -22,12 +22,10 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             {
                 return _orderStorage.GetFullList();
             }
-
             if (model.Id.HasValue)
             {
                 return new List<OrderViewModel> { _orderStorage.GetElement(model) };
             }
-
             return _orderStorage.GetFilteredList(model);
         }
 
@@ -51,12 +49,10 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             {
                 throw new Exception("Не найден заказ");
             }
-
             if (order.Status != OrderStatus.Принят)
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-
             _orderStorage.Update(new OrderBindingModel 
             {
                 Id = order.Id,
@@ -77,12 +73,10 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             {
                 throw new Exception("Не найден заказ");
             }
-
             if (order.Status != OrderStatus.Выполняется)
             {
                 throw new Exception("Заказ не в статусе \"Выполняется\"");
             }
-
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
@@ -103,12 +97,10 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             {
                 throw new Exception("Не найден заказ");
             }
-
             if (order.Status != OrderStatus.Готов)
             {
                 throw new Exception("Заказ не в статусе \"Готов\"");
             }
-
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
