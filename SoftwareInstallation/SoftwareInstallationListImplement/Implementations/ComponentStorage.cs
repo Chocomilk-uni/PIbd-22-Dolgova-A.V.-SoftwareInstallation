@@ -4,7 +4,7 @@ using SoftwareInstallationBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 
-namespace SoftwareInstallationImplement
+namespace SoftwareInstallationListImplement
 {
     public class ComponentStorage : IComponentStorage
     {

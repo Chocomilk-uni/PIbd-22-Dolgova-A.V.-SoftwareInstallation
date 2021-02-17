@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareInstallationView", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftwareInstallationBusinessLogic", "SoftwareInstallationBusinessLogic\SoftwareInstallationBusinessLogic.csproj", "{9BA98C1B-1730-4B91-BE8B-A86CF7D05F86}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftwareInstallationListImplement", "SoftwareInstallationImplement\SoftwareInstallationListImplement.csproj", "{55409032-8A46-4B9C-BEF9-468591A4F98A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftwareInstallationListImplement", "SoftwareInstallationListImplement\SoftwareInstallationListImplement.csproj", "{55409032-8A46-4B9C-BEF9-468591A4F98A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

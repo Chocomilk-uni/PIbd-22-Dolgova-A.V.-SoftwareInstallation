@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SoftwareInstallationImplement
+namespace SoftwareInstallationListImplement
 {
     public class PackageStorage : IPackageStorage
     {
