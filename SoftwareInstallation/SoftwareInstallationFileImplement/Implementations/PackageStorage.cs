@@ -1,13 +1,11 @@
 ﻿using SoftwareInstallationBusinessLogic.BindingModels;
 using SoftwareInstallationBusinessLogic.Interfaces;
 using SoftwareInstallationBusinessLogic.ViewModels;
-using SoftwareInstallationFileImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace SoftwareInstallationFileImplement.Implementations
+namespace SoftwareInstallationFileImplement
 {
     public class PackageStorage : IPackageStorage
     {
@@ -115,8 +113,8 @@ namespace SoftwareInstallationFileImplement.Implementations
                 Id = package.Id,
                 PackageName = package.PackageName,
                 Price = package.Price,
-                PackageComponents = package.PackageComponents.ToDictionary(recPC => )
-            }
+                PackageComponents = package.PackageComponents.ToDictionary(recPC => recPC.Key, recPC => (source.Components.FirstOrDefault(recC => recC.Id == recPC.Key)?.ComponentName, recPC.Value))
+            };
         }
     }
 }

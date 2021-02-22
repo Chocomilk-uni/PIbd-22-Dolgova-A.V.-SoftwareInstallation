@@ -1,4 +1,4 @@
-﻿namespace SoftwareInstallationListImplement
+﻿namespace SoftwareInstallationFiletImplement
 {
     public class Component
     {

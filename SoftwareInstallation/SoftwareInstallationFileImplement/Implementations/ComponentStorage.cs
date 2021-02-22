@@ -1,12 +1,11 @@
 ﻿using SoftwareInstallationBusinessLogic.BindingModels;
 using SoftwareInstallationBusinessLogic.Interfaces;
 using SoftwareInstallationBusinessLogic.ViewModels;
-using SoftwareInstallationFileImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SoftwareInstallationFileImplement.Implementations
+namespace SoftwareInstallationFileImplement
 {
     public class ComponentStorage : IComponentStorage
     {
