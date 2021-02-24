@@ -49,7 +49,7 @@ namespace SoftwareInstallationView
 
         private void ПакетыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormPackage>();
+            var form = Container.Resolve<FormPackages>();
             form.ShowDialog();
         }
 
