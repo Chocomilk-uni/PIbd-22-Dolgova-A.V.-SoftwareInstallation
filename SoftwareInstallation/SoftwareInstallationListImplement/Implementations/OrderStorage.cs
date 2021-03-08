@@ -29,10 +29,19 @@ namespace SoftwareInstallationListImplement.Implementations
 
         private OrderViewModel CreateModel(Order order)
         {
+            string packageName = null;
+            foreach (Package pack in source.Packages)
+            {
+                if (pack.Id == order.PackageId)
+                {
+                    packageName = pack.PackageName;
+                }
+            }
+
             return new OrderViewModel
             {
                 Id = order.Id,
-                PackageName = source.Packages.FirstOrDefault(package => package.Id == order.PackageId)?.PackageName,
+                PackageName = packageName,
                 PackageId = order.PackageId,
                 Count = order.Count,
                 Sum = order.Sum,
