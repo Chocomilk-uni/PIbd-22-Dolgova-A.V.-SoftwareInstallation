@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace SoftwareInstallationListImplement.Models
+namespace SoftwareInstallationFileImplement.Models
 {
     public class Warehouse
     {
