@@ -4,7 +4,6 @@ using SoftwareInstallationBusinessLogic.ViewModels;
 using SoftwareInstallationListImplement.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SoftwareInstallationListImplement.Implementations
 {
