@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SoftwareInstallationFiletImplement.Models
+namespace SoftwareInstallationListImplement.Models
 {
     public class Package
     {
