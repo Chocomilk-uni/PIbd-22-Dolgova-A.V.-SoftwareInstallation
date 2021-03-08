@@ -175,6 +175,10 @@
       <Project>{9ba98c1b-1730-4b91-be8b-a86cf7d05f86}</Project>
       <Name>SoftwareInstallationBusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SoftwareInstallationFileImplement\SoftwareInstallationFileImplement.csproj">
+      <Project>{6b1ff3c4-5c29-4dec-81ee-19c007fe6914}</Project>
+      <Name>SoftwareInstallationFileImplement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SoftwareInstallationListImplement\SoftwareInstallationListImplement.csproj">
       <Project>{55409032-8a46-4b9c-bef9-468591a4f98a}</Project>
       <Name>SoftwareInstallationListImplement</Name>

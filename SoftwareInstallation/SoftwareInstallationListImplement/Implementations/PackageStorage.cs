@@ -1,6 +1,7 @@
 ﻿using SoftwareInstallationBusinessLogic.BindingModels;
 using SoftwareInstallationBusinessLogic.Interfaces;
 using SoftwareInstallationBusinessLogic.ViewModels;
+using SoftwareInstallationListImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
