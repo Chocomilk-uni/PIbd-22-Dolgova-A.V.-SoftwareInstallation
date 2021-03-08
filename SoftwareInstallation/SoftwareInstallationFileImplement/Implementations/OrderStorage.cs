@@ -1,11 +1,12 @@
 ﻿using SoftwareInstallationBusinessLogic.BindingModels;
 using SoftwareInstallationBusinessLogic.Interfaces;
 using SoftwareInstallationBusinessLogic.ViewModels;
+using SoftwareInstallationFileImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SoftwareInstallationFileImplement
+namespace SoftwareInstallationFileImplement.Implementations
 {
     public class OrderStorage : IOrderStorage
     {
