@@ -182,5 +182,10 @@ namespace SoftwareInstallationListImplement.Implementations
                 }
             }
         }
+
+        public bool CheckRemove(Dictionary<int, (string, int)> components, int packagesCount)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

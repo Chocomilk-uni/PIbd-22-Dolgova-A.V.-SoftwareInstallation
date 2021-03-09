@@ -10,10 +10,14 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
     public class OrderLogic
     {
         private readonly IOrderStorage _orderStorage;
+        private readonly IPackageStorage _packageStorage;
+        private readonly IWarehouseStorage _warehouseStorage;
 
-        public OrderLogic(IOrderStorage orderStorage)
+        public OrderLogic(IOrderStorage orderStorage, IPackageStorage packageStorage, IWarehouseStorage warehouseStorage)
         {
             _orderStorage = orderStorage;
+            _packageStorage = packageStorage;
+            _warehouseStorage = warehouseStorage;
         }
 
         public List<OrderViewModel> Read(OrderBindingModel model)
@@ -53,6 +57,11 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
+            if (!_warehouseStorage.CheckRemove(_packageStorage.GetElement(new PackageBindingModel { Id = order.PackageId }).PackageComponents, order.Count))
+            {
+                throw new Exception("Недостаточно компонентов");
+            }
+
             _orderStorage.Update(new OrderBindingModel 
             {
                 Id = order.Id,
