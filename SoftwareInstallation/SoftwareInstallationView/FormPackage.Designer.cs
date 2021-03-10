@@ -40,6 +40,7 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.ComponentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnComponentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxComponents.SuspendLayout();
@@ -49,33 +50,37 @@
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(13, 13);
+            this.labelName.Location = new System.Drawing.Point(17, 16);
+            this.labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(60, 13);
+            this.labelName.Size = new System.Drawing.Size(76, 17);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "Название:";
             // 
             // labelPrice
             // 
             this.labelPrice.AutoSize = true;
-            this.labelPrice.Location = new System.Drawing.Point(13, 39);
+            this.labelPrice.Location = new System.Drawing.Point(17, 48);
+            this.labelPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPrice.Name = "labelPrice";
-            this.labelPrice.Size = new System.Drawing.Size(36, 13);
+            this.labelPrice.Size = new System.Drawing.Size(47, 17);
             this.labelPrice.TabIndex = 1;
             this.labelPrice.Text = "Цена:";
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(79, 10);
+            this.textBoxName.Location = new System.Drawing.Point(105, 12);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(241, 20);
+            this.textBoxName.Size = new System.Drawing.Size(320, 22);
             this.textBoxName.TabIndex = 2;
             // 
             // textBoxPrice
             // 
-            this.textBoxPrice.Location = new System.Drawing.Point(79, 36);
+            this.textBoxPrice.Location = new System.Drawing.Point(105, 44);
+            this.textBoxPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPrice.Name = "textBoxPrice";
-            this.textBoxPrice.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPrice.Size = new System.Drawing.Size(132, 22);
             this.textBoxPrice.TabIndex = 3;
             // 
             // groupBoxComponents
@@ -85,18 +90,21 @@
             this.groupBoxComponents.Controls.Add(this.buttonUpd);
             this.groupBoxComponents.Controls.Add(this.buttonAdd);
             this.groupBoxComponents.Controls.Add(this.dataGridView);
-            this.groupBoxComponents.Location = new System.Drawing.Point(4, 67);
+            this.groupBoxComponents.Location = new System.Drawing.Point(5, 82);
+            this.groupBoxComponents.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxComponents.Name = "groupBoxComponents";
-            this.groupBoxComponents.Size = new System.Drawing.Size(532, 268);
+            this.groupBoxComponents.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxComponents.Size = new System.Drawing.Size(709, 330);
             this.groupBoxComponents.TabIndex = 4;
             this.groupBoxComponents.TabStop = false;
             this.groupBoxComponents.Text = "Компоненты";
             // 
             // buttonRef
             // 
-            this.buttonRef.Location = new System.Drawing.Point(414, 149);
+            this.buttonRef.Location = new System.Drawing.Point(552, 183);
+            this.buttonRef.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonRef.Name = "buttonRef";
-            this.buttonRef.Size = new System.Drawing.Size(102, 23);
+            this.buttonRef.Size = new System.Drawing.Size(136, 28);
             this.buttonRef.TabIndex = 4;
             this.buttonRef.Text = "Обновить";
             this.buttonRef.UseVisualStyleBackColor = true;
@@ -104,9 +112,10 @@
             // 
             // buttonDel
             // 
-            this.buttonDel.Location = new System.Drawing.Point(414, 108);
+            this.buttonDel.Location = new System.Drawing.Point(552, 133);
+            this.buttonDel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonDel.Name = "buttonDel";
-            this.buttonDel.Size = new System.Drawing.Size(102, 23);
+            this.buttonDel.Size = new System.Drawing.Size(136, 28);
             this.buttonDel.TabIndex = 3;
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = true;
@@ -114,9 +123,10 @@
             // 
             // buttonUpd
             // 
-            this.buttonUpd.Location = new System.Drawing.Point(414, 69);
+            this.buttonUpd.Location = new System.Drawing.Point(552, 85);
+            this.buttonUpd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonUpd.Name = "buttonUpd";
-            this.buttonUpd.Size = new System.Drawing.Size(102, 23);
+            this.buttonUpd.Size = new System.Drawing.Size(136, 28);
             this.buttonUpd.TabIndex = 2;
             this.buttonUpd.Text = "Изменить";
             this.buttonUpd.UseVisualStyleBackColor = true;
@@ -124,9 +134,10 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(414, 28);
+            this.buttonAdd.Location = new System.Drawing.Point(552, 34);
+            this.buttonAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(102, 23);
+            this.buttonAdd.Size = new System.Drawing.Size(136, 28);
             this.buttonAdd.TabIndex = 1;
             this.buttonAdd.Text = "Добавить";
             this.buttonAdd.UseVisualStyleBackColor = true;
@@ -139,20 +150,23 @@
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ComponentId,
             this.ColumnComponentName,
             this.ColumnCount});
-            this.dataGridView.Location = new System.Drawing.Point(6, 19);
+            this.dataGridView.Location = new System.Drawing.Point(8, 23);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
-            this.dataGridView.RowHeadersVisible = false;
-            this.dataGridView.Size = new System.Drawing.Size(386, 249);
+            this.dataGridView.RowHeadersWidth = 51;
+            this.dataGridView.Size = new System.Drawing.Size(515, 306);
             this.dataGridView.TabIndex = 0;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(308, 341);
+            this.buttonSave.Location = new System.Drawing.Point(411, 420);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(88, 23);
+            this.buttonSave.Size = new System.Drawing.Size(117, 28);
             this.buttonSave.TabIndex = 5;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -160,31 +174,42 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(402, 341);
+            this.buttonCancel.Location = new System.Drawing.Point(536, 420);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(88, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(117, 28);
             this.buttonCancel.TabIndex = 6;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
+            // ComponentId
+            // 
+            this.ComponentId.HeaderText = "КомпонентId";
+            this.ComponentId.MinimumWidth = 6;
+            this.ComponentId.Name = "ComponentId";
+            this.ComponentId.ReadOnly = true;
+            this.ComponentId.Visible = false;
+            // 
             // ColumnComponentName
             // 
             this.ColumnComponentName.HeaderText = "Компонент";
+            this.ColumnComponentName.MinimumWidth = 6;
             this.ColumnComponentName.Name = "ColumnComponentName";
             this.ColumnComponentName.ReadOnly = true;
             // 
             // ColumnCount
             // 
             this.ColumnCount.HeaderText = "Количество";
+            this.ColumnCount.MinimumWidth = 6;
             this.ColumnCount.Name = "ColumnCount";
             this.ColumnCount.ReadOnly = true;
             // 
             // FormPackage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(548, 370);
+            this.ClientSize = new System.Drawing.Size(731, 455);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.groupBoxComponents);
@@ -192,6 +217,7 @@
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.labelPrice);
             this.Controls.Add(this.labelName);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormPackage";
             this.Text = "Изделие";
             this.Load += new System.EventHandler(this.FormPackage_Load);
@@ -216,6 +242,7 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ComponentId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnComponentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCount;
     }
