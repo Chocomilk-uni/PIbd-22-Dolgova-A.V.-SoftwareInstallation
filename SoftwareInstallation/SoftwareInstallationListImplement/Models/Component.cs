@@ -1,4 +1,4 @@
-﻿namespace SoftwareInstallationListImplement
+﻿namespace SoftwareInstallationListImplement.Models
 {
     public class Component
     {
