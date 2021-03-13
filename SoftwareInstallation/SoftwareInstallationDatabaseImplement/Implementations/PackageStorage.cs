@@ -41,7 +41,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                 return context.Packages
                     .Include(rec => rec.PackageComponents)
                     .ThenInclude(rec => rec.Component)
-                .Where(rec => rec.PackageName.Contains(model.PackageName)).ToList().Select(rec => new PackageViewModel
+                    .Where(rec => rec.PackageName.Contains(model.PackageName)).ToList().Select(rec => new PackageViewModel
                 {
                     Id = rec.Id,
                     PackageName = rec.PackageName,
@@ -63,7 +63,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                 Package package = context.Packages
                     .Include(rec => rec.PackageComponents)
                     .ThenInclude(rec => rec.Component)
-                .FirstOrDefault(rec => rec.PackageName == model.PackageName || rec.Id == model.Id);
+                    .FirstOrDefault(rec => rec.PackageName == model.PackageName || rec.Id == model.Id);
                 return package != null ? new PackageViewModel
                 {
                     Id = package.Id,
@@ -151,10 +151,9 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
             if (model.Id.HasValue)
             {
                 List<PackageComponent> packageComponents = context.PackageComponents.Where(rec => rec.PackageId == model.Id.Value).ToList();
-                // удалили те, которых нет в модели
                 context.PackageComponents.RemoveRange(packageComponents.Where(rec => !model.PackageComponents.ContainsKey(rec.ComponentId)).ToList());
                 context.SaveChanges();
-                // обновили количество у существующих записей
+
                 foreach (PackageComponent updateComponent in packageComponents)
                 {
                     updateComponent.Count = model.PackageComponents[updateComponent.ComponentId].Item2;
@@ -162,7 +161,6 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                 }
                 context.SaveChanges();
             }
-            // добавили новые
             foreach (var pc in model.PackageComponents)
             {
                 context.PackageComponents.Add(new PackageComponent
