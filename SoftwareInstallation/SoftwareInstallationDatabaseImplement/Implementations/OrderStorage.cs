@@ -82,6 +82,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                 null;
             }
         }
+
         public void Insert(OrderBindingModel model)
         {
             using (var context = new SoftwareInstallationDatabase())
@@ -125,6 +126,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                 context.SaveChanges();
             }
         }
+
         public void Delete(OrderBindingModel model)
         {
             using (var context = new SoftwareInstallationDatabase())
@@ -142,6 +144,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                 }
             }
         }
+
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             if (model == null)
