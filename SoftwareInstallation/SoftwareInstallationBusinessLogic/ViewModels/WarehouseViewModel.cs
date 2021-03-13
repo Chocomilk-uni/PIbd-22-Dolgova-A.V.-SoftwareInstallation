@@ -11,7 +11,7 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
         [DisplayName("Название склада")]
         public string WarehouseName { get; set; }
 
-        [DisplayName("ФИО отвественного")]
+        [DisplayName("ФИО ответственного")]
         public string WarehouseManagerFullName { get; set; }
 
         [DisplayName("Дата создания")]
