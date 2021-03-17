@@ -20,12 +20,12 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                     .ThenInclude(rec => rec.Component)
                     .ToList()
                     .Select(rec => new PackageViewModel
-                {
-                    Id = rec.Id,
-                    PackageName = rec.PackageName,
-                    Price = rec.Price,
-                    PackageComponents = rec.PackageComponents.ToDictionary(recPC => recPC.ComponentId, recPC => (recPC.Component?.ComponentName, recPC.Count))
-                }).ToList();
+                    {
+                        Id = rec.Id,
+                        PackageName = rec.PackageName,
+                        Price = rec.Price,
+                        PackageComponents = rec.PackageComponents.ToDictionary(recPC => recPC.ComponentId, recPC => (recPC.Component?.ComponentName, recPC.Count))
+                    }).ToList();
             }
         }
 
@@ -42,12 +42,12 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                     .Include(rec => rec.PackageComponents)
                     .ThenInclude(rec => rec.Component)
                     .Where(rec => rec.PackageName.Contains(model.PackageName)).ToList().Select(rec => new PackageViewModel
-                {
-                    Id = rec.Id,
-                    PackageName = rec.PackageName,
-                    Price = rec.Price,
-                    PackageComponents = rec.PackageComponents.ToDictionary(recPC => recPC.ComponentId, recPC => (recPC.Component?.ComponentName, recPC.Count))
-                }).ToList();
+                    {
+                        Id = rec.Id,
+                        PackageName = rec.PackageName,
+                        Price = rec.Price,
+                        PackageComponents = rec.PackageComponents.ToDictionary(recPC => recPC.ComponentId, recPC => (recPC.Component?.ComponentName, recPC.Count))
+                    }).ToList();
             }
         }
 
@@ -142,7 +142,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
             package.PackageName = model.PackageName;
             package.Price = model.Price;
 
-            if(package.Id == 0)
+            if (package.Id == 0)
             {
                 context.Packages.Add(package);
                 context.SaveChanges();

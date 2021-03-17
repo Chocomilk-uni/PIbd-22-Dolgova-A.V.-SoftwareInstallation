@@ -1,4 +1,5 @@
-﻿using SoftwareInstallationBusinessLogic.BindingModels;
+﻿using Microsoft.EntityFrameworkCore;
+using SoftwareInstallationBusinessLogic.BindingModels;
 using SoftwareInstallationBusinessLogic.Interfaces;
 using SoftwareInstallationBusinessLogic.ViewModels;
 using SoftwareInstallationDatabaseImplement.Models;
@@ -15,17 +16,18 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
             using (var context = new SoftwareInstallationDatabase())
             {
                 return context.Orders
-                .Select(rec => new OrderViewModel
-                {
-                    Id = rec.Id,
-                    PackageId = rec.PackageId,
-                    PackageName = context.Packages.FirstOrDefault(recPC => recPC.Id == rec.PackageId).PackageName,
-                    Count = rec.Count,
-                    Sum = rec.Sum,
-                    Status = rec.Status,
-                    DateCreate = rec.DateCreate,
-                    DateImplement = rec.DateImplement,
-                })
+                    .Include(rec => rec.Package)
+                    .Select(rec => new OrderViewModel
+                    {
+                        Id = rec.Id,
+                        PackageId = rec.PackageId,
+                        PackageName = context.Packages.FirstOrDefault(recPC => recPC.Id == rec.PackageId).PackageName,
+                        Count = rec.Count,
+                        Sum = rec.Sum,
+                        Status = rec.Status,
+                        DateCreate = rec.DateCreate,
+                        DateImplement = rec.DateImplement,
+                    })
                 .ToList();
             }
         }
@@ -40,18 +42,19 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
             using (var context = new SoftwareInstallationDatabase())
             {
                 return context.Orders
-                .Where(rec => rec.PackageId == model.PackageId)
-                .Select(rec => new OrderViewModel
-                {
-                    Id = rec.Id,
-                    PackageId = rec.PackageId,
-                    PackageName = context.Packages.FirstOrDefault(recPC => recPC.Id == rec.PackageId).PackageName,
-                    Count = rec.Count,
-                    Sum = rec.Sum,
-                    Status = rec.Status,
-                    DateCreate = rec.DateCreate,
-                    DateImplement = rec.DateImplement,
-                })
+                    .Include(rec => rec.Package)
+                    .Where(rec => rec.PackageId == model.PackageId)
+                    .Select(rec => new OrderViewModel
+                    {
+                        Id = rec.Id,
+                        PackageId = rec.PackageId,
+                        PackageName = context.Packages.FirstOrDefault(recPC => recPC.Id == rec.PackageId).PackageName,
+                        Count = rec.Count,
+                        Sum = rec.Sum,
+                        Status = rec.Status,
+                        DateCreate = rec.DateCreate,
+                        DateImplement = rec.DateImplement,
+                    })
                 .ToList();
             }
         }
@@ -66,7 +69,8 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
             using (var context = new SoftwareInstallationDatabase())
             {
                 Order order = context.Orders
-                .FirstOrDefault(rec => rec.Id == model.Id);
+                    .Include(rec => rec.Package)
+                    .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel
                 {
