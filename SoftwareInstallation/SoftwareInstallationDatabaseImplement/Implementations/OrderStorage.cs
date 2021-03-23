@@ -43,7 +43,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
             {
                 return context.Orders
                     .Include(rec => rec.Package)
-                    .Where(rec => rec.PackageId == model.PackageId)
+                    .Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
                     .Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,

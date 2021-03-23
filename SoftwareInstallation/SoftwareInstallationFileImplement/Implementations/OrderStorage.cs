@@ -32,7 +32,7 @@ namespace SoftwareInstallationFileImplement.Implementations
             }
 
             return source.Orders
-                .Where(rec => rec.PackageId.Equals(model.PackageId))
+                .Where((rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo))
                 .Select(CreateModel)
                 .ToList();
         }
