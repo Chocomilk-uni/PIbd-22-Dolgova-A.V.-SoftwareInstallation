@@ -13,5 +13,8 @@ namespace SoftwareInstallationDatabaseImplement.Models
 
         [ForeignKey("ComponentId")]
         public virtual List<PackageComponent> PackageComponents { get; set; }
+
+        [ForeignKey("ComponentId")]
+        public virtual List<WarehouseComponent> WarehouseComponents { get; set; }
     }
 }
