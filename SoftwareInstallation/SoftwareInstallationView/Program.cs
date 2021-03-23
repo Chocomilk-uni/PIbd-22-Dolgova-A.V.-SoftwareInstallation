@@ -1,6 +1,6 @@
 ﻿using SoftwareInstallationBusinessLogic.BusinessLogic;
 using SoftwareInstallationBusinessLogic.Interfaces;
-using SoftwareInstallationDatabaseImplement.Implementations;
+using SoftwareInstallationFileImplement.Implementations;
 using System;
 using System.Windows.Forms;
 using Unity;
@@ -29,10 +29,12 @@ namespace SoftwareInstallationView
             currentContainer.RegisterType<IComponentStorage, ComponentStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderStorage, OrderStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IPackageStorage, PackageStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IWarehouseStorage, WarehouseStorage>(new HierarchicalLifetimeManager());
 
             currentContainer.RegisterType<ComponentLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<PackageLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<WarehouseLogic>(new HierarchicalLifetimeManager());
 
             return currentContainer;
         }
