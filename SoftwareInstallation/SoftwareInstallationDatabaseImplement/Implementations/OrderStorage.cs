@@ -21,7 +21,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                     {
                         Id = rec.Id,
                         PackageId = rec.PackageId,
-                        PackageName = context.Packages.FirstOrDefault(recPC => recPC.Id == rec.PackageId).PackageName,
+                        PackageName = rec.Package.PackageName,
                         Count = rec.Count,
                         Sum = rec.Sum,
                         Status = rec.Status,
@@ -48,7 +48,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                     {
                         Id = rec.Id,
                         PackageId = rec.PackageId,
-                        PackageName = context.Packages.FirstOrDefault(recPC => recPC.Id == rec.PackageId).PackageName,
+                        PackageName = rec.Package.PackageName,
                         Count = rec.Count,
                         Sum = rec.Sum,
                         Status = rec.Status,
@@ -76,7 +76,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                 {
                     Id = order.Id,
                     PackageId = order.PackageId,
-                    PackageName = context.Packages.FirstOrDefault(rec => rec.Id == order.PackageId)?.PackageName,
+                    PackageName = order.Package.PackageName,
                     Count = order.Count,
                     Sum = order.Sum,
                     Status = order.Status,
