@@ -82,7 +82,7 @@ namespace SoftwareInstallationView
             // 
             // buttonSaveToPdf
             // 
-            this.buttonSaveToPdf.Location = new System.Drawing.Point(789, 9);
+            this.buttonSaveToPdf.Location = new System.Drawing.Point(919, 9);
             this.buttonSaveToPdf.Name = "buttonSaveToPdf";
             this.buttonSaveToPdf.Size = new System.Drawing.Size(127, 25);
             this.buttonSaveToPdf.TabIndex = 5;
@@ -96,14 +96,14 @@ namespace SoftwareInstallationView
             this.reportViewer.Location = new System.Drawing.Point(0, 40);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
-            this.reportViewer.Size = new System.Drawing.Size(950, 531);
+            this.reportViewer.Size = new System.Drawing.Size(1057, 531);
             this.reportViewer.TabIndex = 6;
             // 
             // FormReportOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(949, 572);
+            this.ClientSize = new System.Drawing.Size(1058, 572);
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.buttonSaveToPdf);
             this.Controls.Add(this.buttonFormReport);

@@ -27,20 +27,20 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             var packages = _packageStorage.GetFullList();
             var list = new List<ReportPackageComponentViewModel>();
 
-            foreach (var component in components)
+            foreach (var package in packages)
             {
                 var record = new ReportPackageComponentViewModel
                 {
-                    ComponentName = component.ComponentName,
-                    Packages = new List<Tuple<string, int>>(),
+                    PackageName = package.PackageName,
+                    PackageComponents = new List<Tuple<string, int>>(),
                     TotalCount = 0
                 };
 
-                foreach (var package in packages)
+                foreach (var component in components)
                 {
                     if (package.PackageComponents.ContainsKey(component.Id))
                     {
-                        record.Packages.Add(new Tuple<string, int>(package.PackageName, package.PackageComponents[component.Id].Item2));
+                        record.PackageComponents.Add(new Tuple<string, int>(component.ComponentName, package.PackageComponents[component.Id].Item2));
                         record.TotalCount += package.PackageComponents[component.Id].Item2;
                     }
                 }

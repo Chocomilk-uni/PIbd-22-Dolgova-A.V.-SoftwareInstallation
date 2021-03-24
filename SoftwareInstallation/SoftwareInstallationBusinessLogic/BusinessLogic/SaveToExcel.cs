@@ -73,12 +73,12 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                         SharedStringPart = sharedStringPart,
                         ColumnName = "A",
                         RowIndex = rowIndex,
-                        Text = pc.ComponentName,
+                        Text = pc.PackageName,
                         StyleIndex = 0U
                     });
                     rowIndex++;
 
-                    foreach (var package in pc.Packages)
+                    foreach (var component in pc.PackageComponents)
                     {
                         InsertCellInWorksheet(new ExcelCellParameters
                         {
@@ -86,7 +86,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                             SharedStringPart = sharedStringPart,
                             ColumnName = "B",
                             RowIndex = rowIndex,
-                            Text = package.Item1,
+                            Text = component.Item1,
                             StyleIndex = 1U
                         });
 
@@ -96,7 +96,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                             SharedStringPart = sharedStringPart,
                             ColumnName = "C",
                             RowIndex = rowIndex,
-                            Text = package.Item2.ToString(),
+                            Text = component.Item2.ToString(),
                             StyleIndex = 1U
                         });
                         rowIndex++;

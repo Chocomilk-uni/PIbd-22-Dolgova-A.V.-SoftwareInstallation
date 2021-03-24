@@ -31,9 +31,9 @@ namespace SoftwareInstallationView
 
                     foreach (var elem in dict)
                     {
-                        dataGridView.Rows.Add(new object[] { elem.ComponentName, "", "" });
+                        dataGridView.Rows.Add(new object[] { elem.PackageName, "", "" });
 
-                        foreach (var listElem in elem.Packages)
+                        foreach (var listElem in elem.PackageComponents)
                         {
                             dataGridView.Rows.Add(new object[] { "", listElem.Item1, listElem.Item2 });
                         }

@@ -102,7 +102,6 @@
               </Paragraph>
             </Paragraphs>
             <Top>0.981cm</Top>
-            <Left>0cm</Left>
             <Height>0.89633cm</Height>
             <Width>19.7517cm</Width>
             <ZIndex>1</ZIndex>
@@ -425,7 +424,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Status.Value</Value>
+                                  <Value>=System.Enum.GetName(First(Fields!Status.Value).GetType(),Fields!Status.Value)</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -471,7 +470,7 @@
             <DataSetName>DataSetOrders</DataSetName>
             <Top>2.53153cm</Top>
             <Left>0.4572cm</Left>
-            <Height>1.36933cm</Height>
+            <Height>1.36934cm</Height>
             <Width>18.7833cm</Width>
             <ZIndex>2</ZIndex>
             <Style>

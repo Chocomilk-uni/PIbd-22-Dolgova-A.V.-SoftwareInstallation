@@ -31,8 +31,8 @@ namespace SoftwareInstallationView
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonSaveToExcel = new System.Windows.Forms.Button();
-            this.ColumnComponent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPackage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnComponent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -44,8 +44,8 @@ namespace SoftwareInstallationView
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnComponent,
             this.ColumnPackage,
+            this.ColumnComponent,
             this.ColumnCount});
             this.dataGridView.Location = new System.Drawing.Point(0, 51);
             this.dataGridView.Margin = new System.Windows.Forms.Padding(4);
@@ -66,19 +66,19 @@ namespace SoftwareInstallationView
             this.buttonSaveToExcel.UseVisualStyleBackColor = true;
             this.buttonSaveToExcel.Click += new System.EventHandler(this.ButtonSaveToExcel_Click);
             // 
-            // ColumnComponent
-            // 
-            this.ColumnComponent.HeaderText = "Компонент";
-            this.ColumnComponent.MinimumWidth = 6;
-            this.ColumnComponent.Name = "ColumnComponent";
-            this.ColumnComponent.ReadOnly = true;
-            // 
             // ColumnPackage
             // 
             this.ColumnPackage.HeaderText = "Пакет";
             this.ColumnPackage.MinimumWidth = 6;
             this.ColumnPackage.Name = "ColumnPackage";
             this.ColumnPackage.ReadOnly = true;
+            // 
+            // ColumnComponent
+            // 
+            this.ColumnComponent.HeaderText = "Компонент";
+            this.ColumnComponent.MinimumWidth = 6;
+            this.ColumnComponent.Name = "ColumnComponent";
+            this.ColumnComponent.ReadOnly = true;
             // 
             // ColumnCount
             // 
@@ -106,8 +106,8 @@ namespace SoftwareInstallationView
 
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonSaveToExcel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnComponent;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPackage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnComponent;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCount;
     }
 }
