@@ -12,27 +12,37 @@ namespace SoftwareInstallationView
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
+
         private readonly PackageLogic _logicP;
         private readonly OrderLogic _logicO;
+        private readonly ClientLogic _logicC;
 
-        public FormCreateOrder(PackageLogic logicP, OrderLogic logicO)
+        public FormCreateOrder(PackageLogic logicP, OrderLogic logicO, ClientLogic logicC)
         {
             InitializeComponent();
             _logicP = logicP;
             _logicO = logicO;
+            _logicC = logicC;
         }
 
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
             try
             {
-                List<PackageViewModel> list = _logicP.Read(null);
-                if (list != null)
+                List<PackageViewModel> listPackages = _logicP.Read(null);
+                List<ClientViewModel> listClients = _logicC.Read(null);
+
+                if (listPackages != null)
                 {
                     comboBoxPackage.DisplayMember = "PackageName";
                     comboBoxPackage.ValueMember = "Id";
-                    comboBoxPackage.DataSource = list;
+                    comboBoxPackage.DataSource = listPackages;
                     comboBoxPackage.SelectedItem = null;
+
+                    comboBoxClient.DisplayMember = "FIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.DataSource = listClients;
+                    comboBoxClient.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -83,11 +93,18 @@ namespace SoftwareInstallationView
                 return;
             }
 
+            if (comboBoxClient.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
                 _logicO.CreateOrder(new CreateOrderBindingModel
                 {
                     PackageId = Convert.ToInt32(comboBoxPackage.SelectedValue),
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });

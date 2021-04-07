@@ -19,6 +19,7 @@ namespace SoftwareInstallationListImplement.Implementations
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.PackageId = model.PackageId;
+            order.ClientId = model.ClientId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -43,6 +44,7 @@ namespace SoftwareInstallationListImplement.Implementations
                 Id = order.Id,
                 PackageName = packageName,
                 PackageId = order.PackageId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,
@@ -70,7 +72,11 @@ namespace SoftwareInstallationListImplement.Implementations
             List<OrderViewModel> result = new List<OrderViewModel>();
             foreach (var order in source.Orders)
             {
-                if ((order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo))
+                if (order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo)
+                {
+                    result.Add(CreateModel(order));
+                }
+                else if (order.ClientId == model.ClientId)
                 {
                     result.Add(CreateModel(order));
                 }

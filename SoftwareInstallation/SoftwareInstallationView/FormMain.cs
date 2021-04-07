@@ -16,7 +16,7 @@ namespace SoftwareInstallationView
         public FormMain(OrderLogic orderLogic, ReportLogic report)
         {
             InitializeComponent();
-            this._orderLogic = orderLogic;
+            _orderLogic = orderLogic;
             this.report = report;
         }
 
@@ -35,6 +35,7 @@ namespace SoftwareInstallationView
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[2].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -146,6 +147,12 @@ namespace SoftwareInstallationView
         private void OrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReportOrders>();
+            form.ShowDialog();
+        }
+
+        private void ClientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormClients>();
             form.ShowDialog();
         }
     }

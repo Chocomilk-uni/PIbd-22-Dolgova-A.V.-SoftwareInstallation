@@ -9,6 +9,7 @@ namespace SoftwareInstallationListImplement
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Package> Packages { get; set; }
+        public List<Client> Clients { get; set; }
 
         private DataListSingleton()
         {
