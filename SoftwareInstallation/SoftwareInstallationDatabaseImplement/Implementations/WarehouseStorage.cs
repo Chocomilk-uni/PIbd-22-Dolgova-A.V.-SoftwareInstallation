@@ -213,37 +213,30 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                     {
                         foreach (KeyValuePair<int, (string, int)> warehouseComponent in components)
                         {
-                            int count = warehouseComponent.Value.Item2 * packagesCount;
+                            int requiredCount = warehouseComponent.Value.Item2 * packagesCount;
                             IEnumerable<WarehouseComponent> warehouseComponents = context.WarehouseComponents.Where(warehouse => warehouse.ComponentId == warehouseComponent.Key);
-
-                            int availableCount = warehouseComponents.Sum(warehouse => warehouse.Count);
-
-                            if (availableCount < count)
-                            {
-                                throw new Exception("На складе недостаточно материалов");
-                            }
 
                             foreach (WarehouseComponent component in warehouseComponents)
                             {
-                                if (component.Count <= count)
+                                if (component.Count <= requiredCount)
                                 {
-                                    count -= component.Count;
+                                    requiredCount -= component.Count;
                                     context.WarehouseComponents.Remove(component);
-                                    context.SaveChanges();
                                 }
                                 else
                                 {
-                                    component.Count -= count;
-                                    context.SaveChanges();
-                                    count = 0;
-                                }
-
-                                if (count == 0)
-                                {
+                                    component.Count -= requiredCount;
+                                    requiredCount = 0;
                                     break;
                                 }
                             }
+
+                            if (requiredCount != 0)
+                            {
+                                throw new Exception("На складе недостаточно материалов");
+                            }
                         }
+                        context.SaveChanges();
                         transaction.Commit();
                         return true;
                     }
