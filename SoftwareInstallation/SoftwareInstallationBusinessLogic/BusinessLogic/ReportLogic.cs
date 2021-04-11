@@ -1,4 +1,5 @@
 ﻿using SoftwareInstallationBusinessLogic.BindingModels;
+using SoftwareInstallationBusinessLogic.Enums;
 using SoftwareInstallationBusinessLogic.HelperModels;
 using SoftwareInstallationBusinessLogic.Interfaces;
 using SoftwareInstallationBusinessLogic.ViewModels;
@@ -53,7 +54,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                 PackageName = x.PackageName,
                 Count = x.Count,
                 Sum = x.Sum,
-                Status = x.Status
+                Status = Convert.ToString((OrderStatus)Enum.Parse(typeof(OrderStatus), x.Status.ToString()))
             })
            .ToList();
         }
