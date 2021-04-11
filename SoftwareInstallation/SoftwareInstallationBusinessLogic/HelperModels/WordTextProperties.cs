@@ -2,7 +2,7 @@
 
 namespace SoftwareInstallationBusinessLogic.HelperModels
 {
-    class WordParagraphProperties
+    class WordTextProperties
     {
         public string Size { get; set; }
         public bool Bold { get; set; }

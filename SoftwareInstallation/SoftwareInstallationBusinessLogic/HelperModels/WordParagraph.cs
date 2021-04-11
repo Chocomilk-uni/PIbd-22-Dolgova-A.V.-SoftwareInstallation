@@ -6,7 +6,7 @@ namespace SoftwareInstallationBusinessLogic.HelperModels
 {
     class WordParagraph
     {
-        public List<(string, WordParagraphProperties)> Texts { get; set; }
-        public WordParagraphProperties ParagraphProperties { get; set; }
+        public List<(string, WordTextProperties)> Texts { get; set; }
+        public WordTextProperties ParagraphProperties { get; set; }
     }
 }
