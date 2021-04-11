@@ -10,13 +10,11 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
 {
     public class ReportLogic
     {
-        private readonly IComponentStorage _componentStorage;
         private readonly IPackageStorage _packageStorage;
         private readonly IOrderStorage _orderStorage;
-        public ReportLogic(IPackageStorage packageStorage, IComponentStorage componentStorage, IOrderStorage orderStorage)
+        public ReportLogic(IPackageStorage packageStorage, IOrderStorage orderStorage)
         {
             _packageStorage = packageStorage;
-            _componentStorage = componentStorage;
             _orderStorage = orderStorage;
         }
 
