@@ -1,4 +1,5 @@
 ﻿using SoftwareInstallationBusinessLogic.BindingModels;
+using SoftwareInstallationBusinessLogic.Enums;
 using SoftwareInstallationBusinessLogic.HelperModels;
 using SoftwareInstallationBusinessLogic.Interfaces;
 using SoftwareInstallationBusinessLogic.ViewModels;
@@ -10,20 +11,17 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
 {
     public class ReportLogic
     {
-        private readonly IComponentStorage _componentStorage;
         private readonly IPackageStorage _packageStorage;
         private readonly IOrderStorage _orderStorage;
-        public ReportLogic(IPackageStorage packageStorage, IComponentStorage componentStorage, IOrderStorage orderStorage)
+        public ReportLogic(IPackageStorage packageStorage, IOrderStorage orderStorage)
         {
             _packageStorage = packageStorage;
-            _componentStorage = componentStorage;
             _orderStorage = orderStorage;
         }
 
         //Получение списка компонентов с указанием того, в каких изделиях они используются
         public List<ReportPackageComponentViewModel> GetPackageComponent()
         {
-            var components = _componentStorage.GetFullList();
             var packages = _packageStorage.GetFullList();
             var list = new List<ReportPackageComponentViewModel>();
 
@@ -36,13 +34,10 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                     TotalCount = 0
                 };
 
-                foreach (var component in components)
+                foreach (var component in package.PackageComponents)
                 {
-                    if (package.PackageComponents.ContainsKey(component.Id))
-                    {
-                        record.PackageComponents.Add(new Tuple<string, int>(component.ComponentName, package.PackageComponents[component.Id].Item2));
-                        record.TotalCount += package.PackageComponents[component.Id].Item2;
-                    }
+                    record.PackageComponents.Add(new Tuple<string, int>(component.Value.Item1, component.Value.Item2));
+                    record.TotalCount += component.Value.Item2;
                 }
                 list.Add(record);
             }
@@ -59,7 +54,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                 PackageName = x.PackageName,
                 Count = x.Count,
                 Sum = x.Sum,
-                Status = x.Status
+                Status = Convert.ToString((OrderStatus)Enum.Parse(typeof(OrderStatus), x.Status.ToString()))
             })
            .ToList();
         }
@@ -81,7 +76,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             SaveToExcel.CreateDoc(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список компонентов",
+                Title = "Список компонентов по пакетам",
                 PackageComponents = GetPackageComponent()
             });
         }

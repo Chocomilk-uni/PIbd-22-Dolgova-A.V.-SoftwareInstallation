@@ -122,7 +122,7 @@ namespace SoftwareInstallationView
             LoadData();
         }
 
-        private void PackagesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReportPackagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
             {
@@ -138,13 +138,13 @@ namespace SoftwareInstallationView
             }
         }
 
-        private void ComponentsPackagesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReportPackageComponentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReportPackageComponents>();
             form.ShowDialog();
         }
 
-        private void OrdersToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReportOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReportOrders>();
             form.ShowDialog();

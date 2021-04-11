@@ -19,8 +19,8 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
 
                 docBody.AppendChild(CreateParagraph(new WordParagraph
                 {
-                    Texts = new List<(string, WordParagraphProperties)> { (info.Title, new WordParagraphProperties { Bold = true, Size = "24", }) },
-                    ParagraphProperties = new WordParagraphProperties
+                    Texts = new List<(string, WordTextProperties)> { (info.Title, new WordTextProperties { Bold = true, Size = "24", }) },
+                    ParagraphProperties = new WordTextProperties
                     {
                         Size = "24",
                         JustificationValues = JustificationValues.Center
@@ -31,8 +31,8 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                 {
                     docBody.AppendChild(CreateParagraph(new WordParagraph
                     {
-                        Texts = new List<(string, WordParagraphProperties)> { (package.PackageName + ": ", new WordParagraphProperties { Bold = true, Size = "24", }), (package.Price.ToString(), new WordParagraphProperties { Size = "24" }) },
-                        ParagraphProperties = new WordParagraphProperties
+                        Texts = new List<(string, WordTextProperties)> { (package.PackageName + ": ", new WordTextProperties { Bold = true, Size = "24", }), (package.Price.ToString(), new WordTextProperties { Size = "24" }) },
+                        ParagraphProperties = new WordTextProperties
                         {
                             Size = "24",
                             JustificationValues = JustificationValues.Both
@@ -91,7 +91,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
         }
 
         //Задание форматирования для абзаца
-        private static ParagraphProperties CreateParagraphProperties(WordParagraphProperties paragraphProperties)
+        private static ParagraphProperties CreateParagraphProperties(WordTextProperties paragraphProperties)
         {
             if (paragraphProperties != null)
             {

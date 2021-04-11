@@ -1,5 +1,4 @@
-﻿using SoftwareInstallationBusinessLogic.Enums;
-using System;
+﻿using System;
 
 namespace SoftwareInstallationBusinessLogic.ViewModels
 {
@@ -9,6 +8,6 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
         public string PackageName { get; set; }
         public int Count { get; set; }
         public decimal Sum { get; set; }
-        public OrderStatus Status { get; set; }
+        public string Status { get; set; }
     }
 }
