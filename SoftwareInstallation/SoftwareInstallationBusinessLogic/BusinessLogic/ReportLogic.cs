@@ -76,7 +76,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             SaveToExcel.CreateDoc(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список компонентов",
+                Title = "Список компонентов по пакетам",
                 PackageComponents = GetPackageComponent()
             });
         }
