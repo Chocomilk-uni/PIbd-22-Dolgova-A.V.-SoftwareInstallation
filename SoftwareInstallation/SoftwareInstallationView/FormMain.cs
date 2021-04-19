@@ -137,15 +137,43 @@ namespace SoftwareInstallationView
             }
         }
 
+        private void ReportWarehousesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    report.SaveWarehousesToWordFile(new ReportBindingModel
+                    {
+                        FileName = dialog.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                }
+            }
+        }
+
         private void ReportPackageComponentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReportPackageComponents>();
             form.ShowDialog();
         }
 
-        private void ReportOrdersToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReportWarehouseComponentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormReportOrders>();
+            var form = Container.Resolve<FormReportWarehouseComponents>();
+            form.ShowDialog();
+        }
+
+        private void ReportOrdersByDateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportOrdersByDates>();
+            form.ShowDialog();
+        }
+
+        private void ReportOrdersInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportOrdersInfo>();
             form.ShowDialog();
         }
 

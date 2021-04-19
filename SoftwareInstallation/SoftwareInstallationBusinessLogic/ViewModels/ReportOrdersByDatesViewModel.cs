@@ -2,7 +2,7 @@
 
 namespace SoftwareInstallationBusinessLogic.ViewModels
 {
-    public class ReportOrdersViewModel
+    public class ReportOrdersByDatesViewModel
     {
         public DateTime DateCreate { get; set; }
         public string PackageName { get; set; }

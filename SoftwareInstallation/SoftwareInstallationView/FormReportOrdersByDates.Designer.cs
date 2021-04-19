@@ -1,7 +1,7 @@
 ﻿
 namespace SoftwareInstallationView
 {
-    partial class FormReportOrders
+    partial class FormReportOrdersByDates
     {
         /// <summary>
         /// Required designer variable.
@@ -92,14 +92,14 @@ namespace SoftwareInstallationView
             // 
             // reportViewer
             // 
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "SoftwareInstallationView.ReportOrders.rdlc";
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "SoftwareInstallationView.ReportOrdersByDates.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(0, 40);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
             this.reportViewer.Size = new System.Drawing.Size(1057, 531);
             this.reportViewer.TabIndex = 6;
             // 
-            // FormReportOrders
+            // FormReportOrdersByDates
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -111,8 +111,8 @@ namespace SoftwareInstallationView
             this.Controls.Add(this.labelDateFrom);
             this.Controls.Add(this.dateTimePickerDateTo);
             this.Controls.Add(this.dateTimePickerDateFrom);
-            this.Name = "FormReportOrders";
-            this.Text = "Заказы клиентов";
+            this.Name = "FormReportOrdersByDates";
+            this.Text = "Заказы клиентов по датам";
             this.ResumeLayout(false);
             this.PerformLayout();
 

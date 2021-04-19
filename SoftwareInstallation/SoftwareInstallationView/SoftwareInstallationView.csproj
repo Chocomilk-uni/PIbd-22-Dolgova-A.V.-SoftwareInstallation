@@ -208,11 +208,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormReportOrders.cs">
+    <Compile Include="FormReportOrdersByDates.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormReportOrders.Designer.cs">
-      <DependentUpon>FormReportOrders.cs</DependentUpon>
+    <Compile Include="FormReportOrdersByDates.Designer.cs">
+      <DependentUpon>FormReportOrdersByDates.cs</DependentUpon>
     </Compile>
     <Compile Include="FormComponent.cs">
       <SubType>Form</SubType>
@@ -262,6 +262,18 @@
     <Compile Include="FormReplenishWarehouse.Designer.cs">
       <DependentUpon>FormReplenishWarehouse.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReportOrdersInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportOrdersInfo.Designer.cs">
+      <DependentUpon>FormReportOrdersInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportWarehouseComponents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportWarehouseComponents.Designer.cs">
+      <DependentUpon>FormReportWarehouseComponents.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWarehouse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -283,8 +295,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <EmbeddedResource Include="FormReportOrders.resx">
-      <DependentUpon>FormReportOrders.cs</DependentUpon>
+    <EmbeddedResource Include="FormReportOrdersByDates.resx">
+      <DependentUpon>FormReportOrdersByDates.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponent.resx">
       <DependentUpon>FormComponent.cs</DependentUpon>
@@ -310,6 +322,12 @@
     <EmbeddedResource Include="FormReplenishWarehouse.resx">
       <DependentUpon>FormReplenishWarehouse.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReportOrdersInfo.resx">
+      <DependentUpon>FormReportOrdersInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportWarehouseComponents.resx">
+      <DependentUpon>FormReportWarehouseComponents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormWarehouse.resx">
       <DependentUpon>FormWarehouse.cs</DependentUpon>
     </EmbeddedResource>
@@ -328,9 +346,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ReportOrders.rdlc" />
+    <EmbeddedResource Include="ReportAllOrdersInfo.rdlc" />
+    <EmbeddedResource Include="ReportOrdersByDates.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.ComponentViewModel.datasource" />
+    <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.OrderViewModel.datasource" />
+    <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.PackageViewModel.datasource" />
+    <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.ReportOrdersByDatesViewModel.datasource" />
+    <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.ReportOrdersForInfoViewModel.datasource" />
     <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.ReportOrdersViewModel.datasource" />
+    <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.ReportPackageComponentViewModel.datasource" />
+    <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.ReportWarehouseComponentViewModel.datasource" />
+    <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.WarehouseViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

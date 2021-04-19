@@ -7,14 +7,14 @@ using Unity;
 
 namespace SoftwareInstallationView
 {
-    public partial class FormReportOrders : Form
+    public partial class FormReportOrdersInfo : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
         private readonly ReportLogic logic;
 
-        public FormReportOrders(ReportLogic logic)
+        public FormReportOrdersInfo(ReportLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
@@ -22,23 +22,11 @@ namespace SoftwareInstallationView
 
         private void ButtonFormReport_Click(object sender, EventArgs e)
         {
-            if (dateTimePickerDateFrom.Value.Date >= dateTimePickerDateTo.Value.Date)
-            {
-                MessageBox.Show("Дата начала должна быть меньше даты окончания", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             try
             {
-                ReportParameter parameter = new ReportParameter("ReportParameterPeriod", "с " + dateTimePickerDateFrom.Value.ToShortDateString() + " по " + dateTimePickerDateTo.Value.ToShortDateString());
-                reportViewer.LocalReport.SetParameters(parameter);
+                var dataSource = logic.GetOrdersForInfo();
 
-                var dataSource = logic.GetOrders(new ReportBindingModel
-                {
-                    DateFrom = dateTimePickerDateFrom.Value,
-                    DateTo = dateTimePickerDateTo.Value
-                });
-                ReportDataSource source = new ReportDataSource("DataSetOrders", dataSource);
+                ReportDataSource source = new ReportDataSource("DataSetOrdersInfo", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();
             }
@@ -50,23 +38,15 @@ namespace SoftwareInstallationView
 
         private void ButtonSaveToPdf_Click(object sender, EventArgs e)
         {
-            if (dateTimePickerDateFrom.Value.Date >= dateTimePickerDateTo.Value.Date)
-            {
-                MessageBox.Show("Дата начала должна быть меньше даты окончания", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             using (var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" })
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        logic.SaveOrdersToPdfFile(new ReportBindingModel
+                        logic.SaveOrdersForInfoToPdfFile(new ReportBindingModel
                         {
-                            FileName = dialog.FileName,
-                            DateFrom = dateTimePickerDateFrom.Value,
-                            DateTo = dateTimePickerDateTo.Value
+                            FileName = dialog.FileName
                         });
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
