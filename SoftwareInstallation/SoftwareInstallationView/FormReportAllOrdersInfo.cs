@@ -57,10 +57,5 @@ namespace SoftwareInstallationView
                 }
             }
         }
-
-        private void FormReportAllOrdersInfo_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

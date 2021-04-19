@@ -84,7 +84,6 @@ namespace SoftwareInstallationView
             this.Controls.Add(this.buttonFormReport);
             this.Name = "FormReportAllOrdersInfo";
             this.Text = "Информация о заказах";
-            this.Load += new System.EventHandler(this.FormReportAllOrdersInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersForInfoViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
