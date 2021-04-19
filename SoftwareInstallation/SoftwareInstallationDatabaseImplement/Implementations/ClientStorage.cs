@@ -36,7 +36,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
             using (var context = new SoftwareInstallationDatabase())
             {
                 return context.Clients
-                    .Where(rec => rec.Email.Contains(model.Email))
+                    .Where(rec => rec.Email == model.Email && rec.Password == rec.Password)
                     .Select(rec => new ClientViewModel
                     {
                         Id = rec.Id,

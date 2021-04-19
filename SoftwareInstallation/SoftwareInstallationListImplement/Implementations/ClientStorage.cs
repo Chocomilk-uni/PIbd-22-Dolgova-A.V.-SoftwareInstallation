@@ -38,7 +38,7 @@ namespace SoftwareInstallationListImplement.Implementations
 
             foreach (var client in source.Clients)
             {
-                if (client.Email.Contains(model.Email))
+                if (client.Email == model.Email && client.Password == model.Password)
                 {
                     result.Add(CreateModel(client));
                 }
@@ -113,7 +113,6 @@ namespace SoftwareInstallationListImplement.Implementations
         {
             client.FIO = model.FIO;
             client.Email = model.Email;
-            client.Password = model.Password;
             client.Password = model.Password;
             return client;
         }

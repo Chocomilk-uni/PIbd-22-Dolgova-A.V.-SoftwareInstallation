@@ -20,8 +20,7 @@ namespace SoftwareInstallationClientApp.Controllers
             {
                 return Redirect("~/Home/Enter");
             }
-            return
-            View(APIClient.GetRequest<List<OrderViewModel>>($"api/main/getorders?clientId={Program.Client.Id}"));
+            return View(APIClient.GetRequest<List<OrderViewModel>>($"api/main/getorders?clientId={Program.Client.Id}"));
         }
 
         [HttpGet]
@@ -56,7 +55,7 @@ namespace SoftwareInstallationClientApp.Controllers
             throw new Exception("Введите логин, пароль и ФИО");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore= true)]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel
@@ -76,8 +75,7 @@ namespace SoftwareInstallationClientApp.Controllers
         {
             if (!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password))
             {
-                Program.Client =
-                APIClient.GetRequest<ClientViewModel>($"api/client/login?login={login}&password={password}");
+                Program.Client = APIClient.GetRequest<ClientViewModel>($"api/client/login?login={login}&password={password}");
 
                 if (Program.Client == null)
                 {

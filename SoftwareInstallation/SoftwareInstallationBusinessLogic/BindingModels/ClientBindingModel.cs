@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Runtime.Serialization;
 
 namespace SoftwareInstallationBusinessLogic.BindingModels
 {
+    [DataContract]
     public class ClientBindingModel
     {
         [DataMember]

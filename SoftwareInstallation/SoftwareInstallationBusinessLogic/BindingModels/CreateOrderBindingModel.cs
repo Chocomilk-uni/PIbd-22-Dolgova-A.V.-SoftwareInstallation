@@ -2,6 +2,7 @@
 
 namespace SoftwareInstallationBusinessLogic.BindingModels
 {
+    [DataContract]
     public class CreateOrderBindingModel
     {
         [DataMember]

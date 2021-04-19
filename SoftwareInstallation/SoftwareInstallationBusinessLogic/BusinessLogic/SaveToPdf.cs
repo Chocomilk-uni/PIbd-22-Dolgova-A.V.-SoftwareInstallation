@@ -26,7 +26,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
 
             var table = document.LastSection.AddTable();
 
-            List<string> columns = new List<string> { "3cm", "6cm", "3cm", "2cm", "3cm" };
+            List<string> columns = new List<string> { "2cm", "3cm", "4cm", "3cm", "2cm", "3cm" };
 
             foreach (var elem in columns)
             {
@@ -36,7 +36,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             CreateRow(new PdfRowParameters
             {
                 Table = table,
-                Texts = new List<string> { "Дата заказа", "Пакет", "Количество", "Сумма", "Статус" },
+                Texts = new List<string> { "Клиент", "Дата заказа", "Пакет", "Количество", "Сумма", "Статус" },
                 Style = "NormalTitle",
                 ParagraphAlignment = ParagraphAlignment.Center
             });
@@ -46,7 +46,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                 CreateRow(new PdfRowParameters
                 {
                     Table = table,
-                    Texts = new List<string> { order.DateCreate.ToShortDateString(), order.PackageName, order.Count.ToString(), order.Sum.ToString(), order.Status.ToString() },
+                    Texts = new List<string> { order.ClientFIO, order.DateCreate.ToShortDateString(), order.PackageName, order.Count.ToString(), order.Sum.ToString(), order.Status.ToString() },
                     Style = "Normal",
                     ParagraphAlignment = ParagraphAlignment.Left
                 });

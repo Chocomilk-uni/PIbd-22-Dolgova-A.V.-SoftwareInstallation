@@ -137,7 +137,7 @@ namespace SoftwareInstallationFileImplement
                     {
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
                         FIO = elem.Element("FIO").Value,
-                        Email = elem.Element("Login").Value,
+                        Email = elem.Element("Email").Value,
                         Password = elem.Element("Password").Value
                     });
                 }
@@ -223,7 +223,7 @@ namespace SoftwareInstallationFileImplement
                     xElement.Add(new XElement("Client",
                         new XAttribute("Id", client.Id),
                         new XElement("FIO", client.FIO),
-                        new XElement("Login", client.Email),
+                        new XElement("Email", client.Email),
                         new XElement("Password", client.Password)));
                 }
                 XDocument xDocument = new XDocument(xElement);

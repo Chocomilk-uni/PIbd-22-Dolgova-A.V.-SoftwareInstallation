@@ -32,7 +32,7 @@ namespace SoftwareInstallationFileImplement.Implementations
             }
 
             return source.Clients
-                .Where(rec => rec.Email.Contains(model.Email))
+                .Where(rec => rec.Email == model.Email && rec.Password == model.Password)
                 .Select(CreateModel)
                 .ToList();
         }

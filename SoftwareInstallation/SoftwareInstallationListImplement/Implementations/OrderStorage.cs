@@ -19,7 +19,7 @@ namespace SoftwareInstallationListImplement.Implementations
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.PackageId = model.PackageId;
-            order.ClientId = model.ClientId;
+            order.ClientId = model.ClientId.Value;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
