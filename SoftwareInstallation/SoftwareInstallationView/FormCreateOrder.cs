@@ -38,7 +38,10 @@ namespace SoftwareInstallationView
                     comboBoxPackage.ValueMember = "Id";
                     comboBoxPackage.DataSource = listPackages;
                     comboBoxPackage.SelectedItem = null;
+                }
 
+                if (listClients != null)
+                {
                     comboBoxClient.DisplayMember = "FIO";
                     comboBoxClient.ValueMember = "Id";
                     comboBoxClient.DataSource = listClients;
