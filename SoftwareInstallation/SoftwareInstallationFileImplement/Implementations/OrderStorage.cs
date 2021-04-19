@@ -32,7 +32,8 @@ namespace SoftwareInstallationFileImplement.Implementations
             }
 
             return source.Orders
-                .Where(rec => rec.PackageId.Equals(model.PackageId))
+                .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
+            (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date))
                 .Select(CreateModel)
                 .ToList();
         }
