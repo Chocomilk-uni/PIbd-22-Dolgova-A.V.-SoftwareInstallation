@@ -88,11 +88,11 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
         }
 
         //Получение полного списка заказов, сгруппированных по датам
-        public List<ReportOrdersForInfoViewModel> GetOrdersForInfo()
+        public List<ReportAllOrdersInfoViewModel> GetOrdersForInfo()
         {
             return _orderStorage.GetFullList()
                 .GroupBy(order => order.DateCreate.ToShortDateString())
-                .Select(rec => new ReportOrdersForInfoViewModel
+                .Select(rec => new ReportAllOrdersInfoViewModel
                 {
                     Date = Convert.ToDateTime(rec.Key),
                     Count = rec.Count(),
@@ -148,7 +148,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
         //Сохранение заказов по определённым датам в Pdf-файл
         public void SaveOrdersByDatesToPdfFile(ReportBindingModel model)
         {
-            SaveToPdf.CreateDocWithOrdersByDates(new PdfOrdersByDateInfo
+            SaveToPdf.CreateDocWithOrdersByDates(new PdfOrdersByDatesInfo
             {
                 FileName = model.FileName,
                 Title = "Список заказов",

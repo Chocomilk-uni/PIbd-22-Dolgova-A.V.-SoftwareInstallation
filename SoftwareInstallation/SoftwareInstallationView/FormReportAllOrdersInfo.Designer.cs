@@ -1,7 +1,7 @@
 ﻿
 namespace SoftwareInstallationView
 {
-    partial class FormReportOrdersInfo
+    partial class FormReportAllOrdersInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -31,19 +31,23 @@ namespace SoftwareInstallationView
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.ReportOrdersForInfoViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.buttonSaveToPdf = new System.Windows.Forms.Button();
             this.buttonFormReport = new System.Windows.Forms.Button();
-            this.ReportOrdersForInfoViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersForInfoViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
+            // ReportOrdersForInfoViewModelBindingSource
+            // 
+            this.ReportOrdersForInfoViewModelBindingSource.DataSource = typeof(SoftwareInstallationBusinessLogic.ViewModels.ReportAllOrdersInfoViewModel);
+            // 
             // reportViewer
             // 
-            reportDataSource1.Name = "DataSetAllOrdersInfo";
+            reportDataSource1.Name = "DataSetOrdersInfo";
             reportDataSource1.Value = this.ReportOrdersForInfoViewModelBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "SoftwareInstallationView.ReportAllOrders.rdlc";
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "SoftwareInstallationView.ReportAllOrdersInfo.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(1, 36);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
@@ -70,11 +74,7 @@ namespace SoftwareInstallationView
             this.buttonFormReport.UseVisualStyleBackColor = true;
             this.buttonFormReport.Click += new System.EventHandler(this.ButtonFormReport_Click);
             // 
-            // ReportOrdersForInfoViewModelBindingSource
-            // 
-            this.ReportOrdersForInfoViewModelBindingSource.DataSource = typeof(SoftwareInstallationBusinessLogic.ViewModels.ReportOrdersForInfoViewModel);
-            // 
-            // FormReportOrdersInfo
+            // FormReportAllOrdersInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -82,8 +82,9 @@ namespace SoftwareInstallationView
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.buttonSaveToPdf);
             this.Controls.Add(this.buttonFormReport);
-            this.Name = "FormReportOrdersInfo";
+            this.Name = "FormReportAllOrdersInfo";
             this.Text = "Информация о заказах";
+            this.Load += new System.EventHandler(this.FormReportAllOrdersInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersForInfoViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 

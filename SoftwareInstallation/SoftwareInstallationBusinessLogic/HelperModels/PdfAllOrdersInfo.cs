@@ -7,6 +7,6 @@ namespace SoftwareInstallationBusinessLogic.HelperModels
     {
         public string FileName { get; set; }
         public string Title { get; set; }
-        public List<ReportOrdersForInfoViewModel> Orders { get; set; }
+        public List<ReportAllOrdersInfoViewModel> Orders { get; set; }
     }
 }

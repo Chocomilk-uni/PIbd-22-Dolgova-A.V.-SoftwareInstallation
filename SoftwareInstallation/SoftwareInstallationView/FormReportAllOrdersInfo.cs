@@ -7,14 +7,14 @@ using Unity;
 
 namespace SoftwareInstallationView
 {
-    public partial class FormReportOrdersInfo : Form
+    public partial class FormReportAllOrdersInfo : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
         private readonly ReportLogic logic;
 
-        public FormReportOrdersInfo(ReportLogic logic)
+        public FormReportAllOrdersInfo(ReportLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
@@ -26,7 +26,7 @@ namespace SoftwareInstallationView
             {
                 var dataSource = logic.GetOrdersForInfo();
 
-                ReportDataSource source = new ReportDataSource("DataSetOrdersInfo", dataSource);
+                ReportDataSource source = new ReportDataSource("DataSetOrders", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();
             }
@@ -56,6 +56,11 @@ namespace SoftwareInstallationView
                     }
                 }
             }
+        }
+
+        private void FormReportAllOrdersInfo_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

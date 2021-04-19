@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SoftwareInstallationBusinessLogic.HelperModels
 {
-    class PdfOrdersByDateInfo
+    class PdfOrdersByDatesInfo
     {
         public string FileName { get; set; }
         public string Title { get; set; }

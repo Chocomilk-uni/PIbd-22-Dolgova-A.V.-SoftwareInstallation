@@ -111,7 +111,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -238,6 +237,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -261,7 +261,7 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>DataSetOrdersInfo</DataSetName>
+        <DataSetName>DataSetOrders</DataSetName>
         <Top>2.02353cm</Top>
         <Left>1.5367cm</Left>
         <Height>1.41167cm</Height>
@@ -304,11 +304,39 @@
       </ConnectionProperties>
       <rd:DataSourceID>5adceba2-20e4-48de-a3fd-3478e37afef4</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="SoftwareInstallationBusinessLogicViewModels2">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>a58d9482-6fc6-44bc-8c8e-b27a6955efcd</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="SoftwareInstallationBusinessLogicViewModels3">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>6a2b5de9-07c2-4a2e-bf12-26e85fda4de7</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="SoftwareInstallationBusinessLogicViewModels4">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>2ef90075-0965-417a-b528-e952afa1b6e5</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="SoftwareInstallationBusinessLogicViewModels5">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>187f2e1b-2294-4f1a-9ddd-2757177dc067</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSetOrdersInfo">
+    <DataSet Name="DataSetOrders">
       <Query>
-        <DataSourceName>SoftwareInstallationBusinessLogicViewModels1</DataSourceName>
+        <DataSourceName>SoftwareInstallationBusinessLogicViewModels5</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -327,8 +355,8 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>SoftwareInstallationBusinessLogic.ViewModels</rd:DataSetName>
-        <rd:TableName>ReportOrdersForInfoViewModel</rd:TableName>
-        <rd:ObjectDataSourceType>SoftwareInstallationBusinessLogic.ViewModels.ReportOrdersForInfoViewModel, SoftwareInstallationBusinessLogic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ReportAllOrdersInfoViewModel</rd:TableName>
+        <rd:ObjectDataSourceType>SoftwareInstallationBusinessLogic.ViewModels.ReportAllOrdersInfoViewModel, SoftwareInstallationBusinessLogic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

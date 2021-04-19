@@ -2,7 +2,7 @@
 
 namespace SoftwareInstallationBusinessLogic.ViewModels
 {
-    public class ReportOrdersForInfoViewModel
+    public class ReportAllOrdersInfoViewModel
     {
         public DateTime Date { get; set; }
         public int Count { get; set; }

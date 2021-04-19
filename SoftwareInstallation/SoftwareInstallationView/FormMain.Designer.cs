@@ -205,7 +205,7 @@
             this.списокЗаказовПоДатамToolStripMenuItem.Name = "списокЗаказовПоДатамToolStripMenuItem";
             this.списокЗаказовПоДатамToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
             this.списокЗаказовПоДатамToolStripMenuItem.Text = "Список заказов по датам";
-            this.списокЗаказовПоДатамToolStripMenuItem.Click += new System.EventHandler(this.ReportOrdersByDateToolStripMenuItem_Click);
+            this.списокЗаказовПоДатамToolStripMenuItem.Click += new System.EventHandler(this.ReportOrdersByDatesToolStripMenuItem_Click);
             // 
             // списокСкладовToolStripMenuItem
             // 
@@ -226,7 +226,7 @@
             this.информацияОЗаказахToolStripMenuItem.Name = "информацияОЗаказахToolStripMenuItem";
             this.информацияОЗаказахToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
             this.информацияОЗаказахToolStripMenuItem.Text = "Информация о заказах";
-            this.информацияОЗаказахToolStripMenuItem.Click += new System.EventHandler(this.ReportOrdersInfoToolStripMenuItem_Click);
+            this.информацияОЗаказахToolStripMenuItem.Click += new System.EventHandler(this.ReportAllOrdersInfoToolStripMenuItem_Click);
             // 
             // FormMain
             // 

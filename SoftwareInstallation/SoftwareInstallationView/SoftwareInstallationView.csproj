@@ -262,11 +262,11 @@
     <Compile Include="FormReplenishWarehouse.Designer.cs">
       <DependentUpon>FormReplenishWarehouse.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormReportOrdersInfo.cs">
+    <Compile Include="FormReportAllOrdersInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormReportOrdersInfo.Designer.cs">
-      <DependentUpon>FormReportOrdersInfo.cs</DependentUpon>
+    <Compile Include="FormReportAllOrdersInfo.Designer.cs">
+      <DependentUpon>FormReportAllOrdersInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="FormReportWarehouseComponents.cs">
       <SubType>Form</SubType>
@@ -322,8 +322,8 @@
     <EmbeddedResource Include="FormReplenishWarehouse.resx">
       <DependentUpon>FormReplenishWarehouse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormReportOrdersInfo.resx">
-      <DependentUpon>FormReportOrdersInfo.cs</DependentUpon>
+    <EmbeddedResource Include="FormReportAllOrdersInfo.resx">
+      <DependentUpon>FormReportAllOrdersInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportWarehouseComponents.resx">
       <DependentUpon>FormReportWarehouseComponents.cs</DependentUpon>
@@ -352,6 +352,7 @@
     <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.ComponentViewModel.datasource" />
     <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.OrderViewModel.datasource" />
     <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.PackageViewModel.datasource" />
+    <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.ReportAllOrdersInfoViewModel.datasource" />
     <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.ReportOrdersByDatesViewModel.datasource" />
     <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.ReportOrdersForInfoViewModel.datasource" />
     <None Include="Properties\DataSources\SoftwareInstallationBusinessLogic.ViewModels.ReportOrdersViewModel.datasource" />

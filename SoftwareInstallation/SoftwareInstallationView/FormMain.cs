@@ -165,15 +165,15 @@ namespace SoftwareInstallationView
             form.ShowDialog();
         }
 
-        private void ReportOrdersByDateToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReportOrdersByDatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReportOrdersByDates>();
             form.ShowDialog();
         }
 
-        private void ReportOrdersInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReportAllOrdersInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormReportOrdersInfo>();
+            var form = Container.Resolve<FormReportAllOrdersInfo>();
             form.ShowDialog();
         }
 

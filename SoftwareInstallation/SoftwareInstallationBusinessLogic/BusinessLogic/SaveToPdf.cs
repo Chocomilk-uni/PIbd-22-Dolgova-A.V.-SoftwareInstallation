@@ -8,7 +8,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
 {
     class SaveToPdf
     {
-        public static void CreateDocWithOrdersByDates(PdfOrdersByDateInfo info)
+        public static void CreateDocWithOrdersByDates(PdfOrdersByDatesInfo info)
         {
             Document document = new Document();
             DefineStyles(document);
