@@ -3,17 +3,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SoftwareInstallationBusinessLogic.BusinessLogic;
-using SoftwareInstallationBusinessLogic.Interfaces;
-using SoftwareInstallationDatabaseImplement.Implementations;
 
-namespace SoftwareInstallationRestApi
+namespace SoftwareInstallationWarehouseApp
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            APIClient.Connect(configuration);
         }
 
         public IConfiguration Configuration { get; }
@@ -21,17 +19,7 @@ namespace SoftwareInstallationRestApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IClientStorage, ClientStorage>();
-            services.AddTransient<IComponentStorage, ComponentStorage>();
-            services.AddTransient<IOrderStorage, OrderStorage>();
-            services.AddTransient<IPackageStorage, PackageStorage>();
-            services.AddTransient<IWarehouseStorage, WarehouseStorage>();
-            services.AddTransient<OrderLogic>();
-            services.AddTransient<ComponentLogic>();
-            services.AddTransient<ClientLogic>();
-            services.AddTransient<PackageLogic>();
-            services.AddTransient<WarehouseLogic>();
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +29,12 @@ namespace SoftwareInstallationRestApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -51,7 +44,9 @@ namespace SoftwareInstallationRestApi
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

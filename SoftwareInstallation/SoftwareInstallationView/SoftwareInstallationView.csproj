@@ -214,7 +214,6 @@
     <Compile Include="FormClients.Designer.cs">
       <DependentUpon>FormClients.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormReportOrders.cs">
     <Compile Include="FormReportOrdersByDates.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,8 +304,6 @@
     <EmbeddedResource Include="FormClients.resx">
       <DependentUpon>FormClients.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormReportOrders.resx">
-      <DependentUpon>FormReportOrders.cs</DependentUpon>
     <EmbeddedResource Include="FormReportOrdersByDates.resx">
       <DependentUpon>FormReportOrdersByDates.cs</DependentUpon>
     </EmbeddedResource>

@@ -5,10 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20210310080708_123.cs" />
-    <Compile Remove="Migrations\20210310080708_123.Designer.cs" />
-    <Compile Remove="Migrations\20210419105025_WarehousesInit.cs" />
-    <Compile Remove="Migrations\20210419105025_WarehousesInit.Designer.cs" />
+    <Compile Remove="Migrations\20210419123621_Init.cs" />
+    <Compile Remove="Migrations\20210419123621_Init.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,10 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SoftwareInstallationBusinessLogic\SoftwareInstallationBusinessLogic.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
