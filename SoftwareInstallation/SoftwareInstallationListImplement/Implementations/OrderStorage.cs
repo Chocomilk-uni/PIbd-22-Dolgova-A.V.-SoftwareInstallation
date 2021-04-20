@@ -1,4 +1,5 @@
 ﻿using SoftwareInstallationBusinessLogic.BindingModels;
+using SoftwareInstallationBusinessLogic.Enums;
 using SoftwareInstallationBusinessLogic.Interfaces;
 using SoftwareInstallationBusinessLogic.ViewModels;
 using SoftwareInstallationListImplement.Models;
@@ -20,6 +21,7 @@ namespace SoftwareInstallationListImplement.Implementations
         {
             order.PackageId = model.PackageId;
             order.ClientId = model.ClientId.Value;
+            order.ImplementerId = model.ImplementerId.Value;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -32,6 +34,7 @@ namespace SoftwareInstallationListImplement.Implementations
         {
             string packageName = null;
             string clientFIO = null;
+            string implementerFIO = null;
 
             foreach (Package pack in source.Packages)
             {
@@ -47,6 +50,13 @@ namespace SoftwareInstallationListImplement.Implementations
                     clientFIO = client.FIO;
                 }
             }
+            foreach (var implementer in source.Implementers)
+            {
+                if (implementer.Id == order.ImplementerId)
+                {
+                    implementerFIO = implementer.FIO;
+                }
+            }
 
             return new OrderViewModel
             {
@@ -55,6 +65,8 @@ namespace SoftwareInstallationListImplement.Implementations
                 PackageId = order.PackageId,
                 ClientId = order.ClientId,
                 ClientFIO = clientFIO,
+                ImplementerId = order.ImplementerId,
+                ImplementerFIO = implementerFIO,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,
@@ -84,7 +96,8 @@ namespace SoftwareInstallationListImplement.Implementations
             {
                 if ((!model.DateFrom.HasValue && !model.DateTo.HasValue && order.DateCreate.Date == model.DateCreate.Date) ||
                 (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date && order.DateCreate.Date <= model.DateTo.Value.Date)
-                || (model.ClientId.HasValue && order.ClientId == model.ClientId))
+                || (model.ClientId.HasValue && order.ClientId == model.ClientId) || (model.FreeOrders.HasValue && model.FreeOrders.Value && order.Status == OrderStatus.Принят) ||
+                (model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && order.Status == OrderStatus.Выполняется))
                 {
                     result.Add(CreateModel(order));
                 }
