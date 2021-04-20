@@ -35,7 +35,7 @@ namespace SoftwareInstallationFileImplement.Implementations
                  .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date
                 == model.DateCreate.Date) ||
                 (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date &&
-                rec.DateCreate.Date <= model.DateTo.Value.Date) || (model.ClientId.HasValue &&  rec.ClientId == model.ClientId))
+                rec.DateCreate.Date <= model.DateTo.Value.Date) || (model.ClientId.HasValue && rec.ClientId == model.ClientId))
                 .Select(CreateModel)
                 .ToList();
         }
@@ -56,7 +56,17 @@ namespace SoftwareInstallationFileImplement.Implementations
         public void Insert(OrderBindingModel model)
         {
             int maxId = source.Orders.Count > 0 ? source.Orders.Max(rec => rec.Id) : 0;
-            var element = new Order { Id = maxId + 1, PackageId = model.PackageId, Count = model.Count, Sum = model.Sum, Status = model.Status, DateCreate = model.DateCreate, DateImplement = model.DateImplement };
+            var element = new Order
+            {
+                Id = maxId + 1,
+                PackageId = model.PackageId,
+                ClientId = model.ClientId.Value,
+                Count = model.Count,
+                Sum = model.Sum,
+                Status = model.Status,
+                DateCreate = model.DateCreate,
+                DateImplement = model.DateImplement
+            };
             source.Orders.Add(CreateModel(model, element));
         }
 
