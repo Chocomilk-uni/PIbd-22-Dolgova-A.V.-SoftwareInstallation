@@ -13,6 +13,8 @@
     <Compile Remove="Migrations\20210406125135_ClientInit.Designer.cs" />
     <Compile Remove="Migrations\20210406125314_ClientInit.cs" />
     <Compile Remove="Migrations\20210406125314_ClientInit.Designer.cs" />
+    <Compile Remove="Migrations\20210406152648_migr.cs" />
+    <Compile Remove="Migrations\20210406152648_migr.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

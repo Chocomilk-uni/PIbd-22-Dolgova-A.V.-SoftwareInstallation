@@ -63,6 +63,8 @@ namespace SoftwareInstallationFileImplement.Implementations
             {
                 Id = maxId + 1,
                 PackageId = model.PackageId,
+                ClientId = model.ClientId.Value,
+                ImplementerId = model.ImplementerId.Value,
                 Count = model.Count,
                 Sum = model.Sum,
                 Status = model.Status,
@@ -101,6 +103,7 @@ namespace SoftwareInstallationFileImplement.Implementations
         {
             order.PackageId = model.PackageId;
             order.ClientId = model.ClientId.Value;
+            order.ImplementerId = model.ImplementerId.Value;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -119,6 +122,8 @@ namespace SoftwareInstallationFileImplement.Implementations
                 PackageId = order.PackageId,
                 ClientId = order.ClientId,
                 ClientFIO = source.Clients.FirstOrDefault(c => c.Id == order.ClientId)?.FIO,
+                ImplementerId = order.ImplementerId,
+                ImplementerFIO = source.Implementers.FirstOrDefault(imp => imp.Id == order.ImplementerId)?.FIO,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,

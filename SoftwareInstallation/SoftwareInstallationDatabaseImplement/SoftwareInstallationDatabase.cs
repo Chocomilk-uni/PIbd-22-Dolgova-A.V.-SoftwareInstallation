@@ -19,5 +19,6 @@ namespace SoftwareInstallationDatabaseImplement
         public virtual DbSet<PackageComponent> PackageComponents { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<Implementer> Implementers { get; set; }
     }
 }
