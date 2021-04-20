@@ -16,10 +16,12 @@ namespace SoftwareInstallationFileImplement
         private readonly string OrderFileName = "Order.xml";
         private readonly string PackageFileName = "Package.xml";
         private readonly string WarehouseFileName = "Warehouse.xml";
+        private readonly string ClientFileName = "Client.xml";
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Package> Packages { get; set; }
         public List<Warehouse> Warehouses { get; set; }
+        public List<Client> Clients { get; set; }
 
         private FileDataListSingleton()
         {
@@ -27,6 +29,7 @@ namespace SoftwareInstallationFileImplement
             Orders = LoadOrders();
             Packages = LoadPackages();
             Warehouses = LoadWarehouses();
+            Clients = LoadClients();
         }
 
         public static FileDataListSingleton GetInstance()
@@ -43,6 +46,7 @@ namespace SoftwareInstallationFileImplement
             SaveComponents();
             SaveOrders();
             SavePackages();
+            SaveClients();
             SaveWarehouses();
         }
 
@@ -82,6 +86,7 @@ namespace SoftwareInstallationFileImplement
                     {
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
                         PackageId = Convert.ToInt32(elem.Element("PackageId").Value),
+                        ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
                         Count = Convert.ToInt32(elem.Element("Count").Value),
                         Sum = Convert.ToDecimal(elem.Element("Sum").Value),
                         Status = (OrderStatus)Convert.ToInt32(elem.Element("Status").Value),
@@ -154,6 +159,29 @@ namespace SoftwareInstallationFileImplement
             return list;
         }
 
+        private List<Client> LoadClients()
+        {
+            var list = new List<Client>();
+
+            if (File.Exists(ClientFileName))
+            {
+                XDocument xDocument = XDocument.Load(ClientFileName);
+
+                var xElements = xDocument.Root.Elements("Client").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Client
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        FIO = elem.Element("FIO").Value,
+                        Email = elem.Element("Email").Value,
+                        Password = elem.Element("Password").Value
+                    });
+                }
+            }
+            return list;
+        }
+
         private void SaveComponents()
         {
             if (Components != null)
@@ -182,6 +210,7 @@ namespace SoftwareInstallationFileImplement
                     xElement.Add(new XElement("Order",
                         new XAttribute("Id", order.Id),
                         new XElement("PackageId", order.PackageId),
+                        new XElement("ClientId", order.ClientId),
                         new XElement("Count", order.Count),
                         new XElement("Sum", order.Sum),
                         new XElement("Status", (int)order.Status),
@@ -246,6 +275,25 @@ namespace SoftwareInstallationFileImplement
                 }
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(WarehouseFileName);
+            }
+        }
+
+        private void SaveClients()
+        {
+            if (Clients != null)
+            {
+                var xElement = new XElement("Clients");
+
+                foreach (var client in Clients)
+                {
+                    xElement.Add(new XElement("Client",
+                        new XAttribute("Id", client.Id),
+                        new XElement("FIO", client.FIO),
+                        new XElement("Email", client.Email),
+                        new XElement("Password", client.Password)));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(ClientFileName);
             }
         }
     }

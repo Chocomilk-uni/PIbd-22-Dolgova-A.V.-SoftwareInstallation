@@ -17,11 +17,14 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
             {
                 return context.Orders
                     .Include(rec => rec.Package)
+                    .Include(rec => rec.Client)
                     .Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,
                         PackageId = rec.PackageId,
                         PackageName = rec.Package.PackageName,
+                        ClientId = rec.ClientId,
+                        ClientFIO = rec.Client.FIO,
                         Count = rec.Count,
                         Sum = rec.Sum,
                         Status = rec.Status,
@@ -43,13 +46,17 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
             {
                 return context.Orders
                     .Include(rec => rec.Package)
-                    .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
-                (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date))
+                    .Include(rec => rec.Client)
+                   .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
+                (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date &&
+                rec.DateCreate.Date <= model.DateTo.Value.Date) || (model.ClientId.HasValue && rec.ClientId == model.ClientId))
                     .Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,
                         PackageId = rec.PackageId,
                         PackageName = rec.Package.PackageName,
+                        ClientId = rec.ClientId,
+                        ClientFIO = rec.Client.FIO,
                         Count = rec.Count,
                         Sum = rec.Sum,
                         Status = rec.Status,
@@ -71,6 +78,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
             {
                 Order order = context.Orders
                     .Include(rec => rec.Package)
+                    .Include(rec => rec.Client)
                     .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel
@@ -78,6 +86,8 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                     Id = order.Id,
                     PackageId = order.PackageId,
                     PackageName = order.Package.PackageName,
+                    ClientId = order.ClientId,
+                    ClientFIO = order.Client.FIO,
                     Count = order.Count,
                     Sum = order.Sum,
                     Status = order.Status,
@@ -92,19 +102,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
         {
             using (var context = new SoftwareInstallationDatabase())
             {
-                Order order = new Order
-                {
-                    PackageId = model.PackageId,
-                    Count = model.Count,
-                    Sum = model.Sum,
-                    Status = model.Status,
-                    DateCreate = model.DateCreate,
-                    DateImplement = model.DateImplement,
-                };
-                context.Orders.Add(order);
-                context.SaveChanges();
-
-                CreateModel(model, order);
+                context.Orders.Add(CreateModel(model, new Order()));
                 context.SaveChanges();
             }
         }
@@ -119,13 +117,6 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                 {
                     throw new Exception("Элемент не найден");
                 }
-
-                element.PackageId = model.PackageId;
-                element.Count = model.Count;
-                element.Sum = model.Sum;
-                element.Status = model.Status;
-                element.DateCreate = model.DateCreate;
-                element.DateImplement = model.DateImplement;
 
                 CreateModel(model, element);
                 context.SaveChanges();
@@ -152,31 +143,14 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
 
         private Order CreateModel(OrderBindingModel model, Order order)
         {
-            if (model == null)
-            {
-                return null;
-            }
+            order.PackageId = model.PackageId;
+            order.Sum = model.Sum;
+            order.Count = model.Count;
+            order.Status = model.Status;
+            order.DateCreate = model.DateCreate;
+            order.DateImplement = model.DateImplement;
+            order.ClientId = model.ClientId.Value;
 
-            using (var context = new SoftwareInstallationDatabase())
-            {
-                Package element = context.Packages.FirstOrDefault(rec => rec.Id == model.PackageId);
-
-                if (element != null)
-                {
-                    if (element.Orders == null)
-                    {
-                        element.Orders = new List<Order>();
-                    }
-
-                    element.Orders.Add(order);
-                    context.Packages.Update(element);
-                    context.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception("Элемент не найден");
-                }
-            }
             return order;
         }
     }

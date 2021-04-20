@@ -19,6 +19,7 @@ namespace SoftwareInstallationListImplement.Implementations
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.PackageId = model.PackageId;
+            order.ClientId = model.ClientId.Value;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -30,11 +31,20 @@ namespace SoftwareInstallationListImplement.Implementations
         private OrderViewModel CreateModel(Order order)
         {
             string packageName = null;
+            string clientFIO = null;
+
             foreach (Package pack in source.Packages)
             {
                 if (pack.Id == order.PackageId)
                 {
                     packageName = pack.PackageName;
+                }
+            }
+            foreach (var client in source.Clients)
+            {
+                if (client.Id == order.ClientId)
+                {
+                    clientFIO = client.FIO;
                 }
             }
 
@@ -43,6 +53,8 @@ namespace SoftwareInstallationListImplement.Implementations
                 Id = order.Id,
                 PackageName = packageName,
                 PackageId = order.PackageId,
+                ClientId = order.ClientId,
+                ClientFIO = clientFIO,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,
@@ -71,7 +83,8 @@ namespace SoftwareInstallationListImplement.Implementations
             foreach (var order in source.Orders)
             {
                 if ((!model.DateFrom.HasValue && !model.DateTo.HasValue && order.DateCreate.Date == model.DateCreate.Date) ||
-                (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date && order.DateCreate.Date <= model.DateTo.Value.Date))
+                (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date && order.DateCreate.Date <= model.DateTo.Value.Date)
+                || (model.ClientId.HasValue && order.ClientId == model.ClientId))
                 {
                     result.Add(CreateModel(order));
                 }

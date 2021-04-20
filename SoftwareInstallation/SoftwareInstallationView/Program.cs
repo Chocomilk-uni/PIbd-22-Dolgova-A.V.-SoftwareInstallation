@@ -30,12 +30,14 @@ namespace SoftwareInstallationView
             currentContainer.RegisterType<IOrderStorage, OrderStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IPackageStorage, PackageStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IWarehouseStorage, WarehouseStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IClientStorage, ClientStorage>(new HierarchicalLifetimeManager());
 
             currentContainer.RegisterType<ComponentLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<PackageLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ReportLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<WarehouseLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ClientLogic>(new HierarchicalLifetimeManager());
 
             return currentContainer;
         }
