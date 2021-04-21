@@ -68,7 +68,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                     Id = order.Id,
                     PackageId = order.PackageId,
                     ClientId = order.ClientId,
-                    ImplementerId = order.ImplementerId,
+                    ImplementerId = model.ImplementerId,
                     Count = order.Count,
                     Sum = order.Sum,
                     DateCreate = order.DateCreate,

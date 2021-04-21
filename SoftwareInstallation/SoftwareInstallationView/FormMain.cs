@@ -39,6 +39,7 @@ namespace SoftwareInstallationView
                     dataGridView.Columns[1].Visible = false;
                     dataGridView.Columns[2].Visible = false;
                     dataGridView.Columns[3].Visible = false;
+                    
                 }
             }
             catch (Exception ex)

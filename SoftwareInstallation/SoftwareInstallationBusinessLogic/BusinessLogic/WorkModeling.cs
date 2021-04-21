@@ -41,8 +41,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
         }
 
         // Имитация работы исполнителя
-        private async void WorkerWorkAsync(ImplementerViewModel implementer,
-            List<OrderViewModel> orders)
+        private async void WorkerWorkAsync(ImplementerViewModel implementer, List<OrderViewModel> orders)
         {
             var runOrders = await Task.Run(() => _orderStorage.GetFilteredList(new OrderBindingModel
             {
