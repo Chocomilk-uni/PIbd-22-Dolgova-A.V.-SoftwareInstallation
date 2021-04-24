@@ -116,7 +116,7 @@ namespace SoftwareInstallationFileImplement.Implementations
                 PackageName = source.Packages.FirstOrDefault(package => package.Id == order.PackageId)?.PackageName,
                 PackageId = order.PackageId,
                 ClientId = order.ClientId,
-                ClientFIO = source.Clients.FirstOrDefault(c => c.Id == order.ClientId)?.FIO,
+                ClientFIO = source.Clients.FirstOrDefault(c => c.Id == order.ClientId)?.ClientFIO,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,

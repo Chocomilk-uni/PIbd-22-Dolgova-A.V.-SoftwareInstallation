@@ -11,7 +11,7 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
 
         [DataMember]
         [DisplayName("ФИО")]
-        public string FIO { get; set; }
+        public string ClientFIO { get; set; }
 
         [DataMember]
         [DisplayName("Почта")]
