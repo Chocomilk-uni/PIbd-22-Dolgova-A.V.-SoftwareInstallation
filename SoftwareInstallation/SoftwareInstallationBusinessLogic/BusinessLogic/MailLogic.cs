@@ -20,12 +20,10 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
         private static string mailLogin;
         private static string mailPassword;
         private readonly IMessageInfoStorage messageInfoStorage;
-        private readonly IClientStorage clientStorage;
 
-        public MailLogic(IMessageInfoStorage messageInfoStorage, IClientStorage clientStorage)
+        public MailLogic(IMessageInfoStorage messageInfoStorage)
         {
             this.messageInfoStorage = messageInfoStorage;
-            this.clientStorage = clientStorage;
         }
 
         public List<MessageInfoViewModel> Read(MessageInfoBindingModel model)
@@ -36,17 +34,6 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
             }
 
             return messageInfoStorage.GetFilteredList(model);
-        }
-
-        public void CreateOrder(MessageInfoBindingModel model)
-        {
-            var client = clientStorage.GetElement(new ClientBindingModel 
-            { 
-                Email = model.FromMailAddress 
-            });
-            model.ClientId = client?.Id;
-
-            messageInfoStorage.Insert(model);
         }
 
         public static void MailConfig(MailConfig config)
