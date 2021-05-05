@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoftwareInstallationBusinessLogic.BindingModels;
+using SoftwareInstallationBusinessLogic.Enums;
 using SoftwareInstallationBusinessLogic.Interfaces;
 using SoftwareInstallationBusinessLogic.ViewModels;
 using SoftwareInstallationDatabaseImplement.Models;
@@ -18,6 +19,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                 return context.Orders
                     .Include(rec => rec.Package)
                     .Include(rec => rec.Client)
+                    .Include(rec => rec.Implementer)
                     .Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,
@@ -25,6 +27,8 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                         PackageName = rec.Package.PackageName,
                         ClientId = rec.ClientId,
                         ClientFIO = rec.Client.FIO,
+                        ImplementerId = rec.ImplementerId,
+                        ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.FIO : string.Empty,
                         Count = rec.Count,
                         Sum = rec.Sum,
                         Status = rec.Status,
@@ -47,9 +51,12 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                 return context.Orders
                     .Include(rec => rec.Package)
                     .Include(rec => rec.Client)
+                    .Include(rec => rec.Implementer)
                    .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
                 (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date &&
-                rec.DateCreate.Date <= model.DateTo.Value.Date) || (model.ClientId.HasValue && rec.ClientId == model.ClientId))
+                rec.DateCreate.Date <= model.DateTo.Value.Date) || (model.ClientId.HasValue && rec.ClientId == model.ClientId) 
+                || (model.FreeOrders.HasValue && model.FreeOrders.Value && rec.Status == OrderStatus.Принят) ||
+                (model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется))
                     .Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,
@@ -57,6 +64,8 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                         PackageName = rec.Package.PackageName,
                         ClientId = rec.ClientId,
                         ClientFIO = rec.Client.FIO,
+                        ImplementerId = rec.ImplementerId,
+                        ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.FIO : string.Empty,
                         Count = rec.Count,
                         Sum = rec.Sum,
                         Status = rec.Status,
@@ -79,6 +88,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                 Order order = context.Orders
                     .Include(rec => rec.Package)
                     .Include(rec => rec.Client)
+                    .Include(rec => rec.Implementer)
                     .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel
@@ -88,6 +98,8 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                     PackageName = order.Package.PackageName,
                     ClientId = order.ClientId,
                     ClientFIO = order.Client.FIO,
+                    ImplementerId = order.ImplementerId,
+                    ImplementerFIO = order.ImplementerId.HasValue ? order.Implementer.FIO : string.Empty,
                     Count = order.Count,
                     Sum = order.Sum,
                     Status = order.Status,
@@ -150,7 +162,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
             order.DateCreate = model.DateCreate;
             order.DateImplement = model.DateImplement;
             order.ClientId = model.ClientId.Value;
-
+            order.ImplementerId = model.ImplementerId;
             return order;
         }
     }

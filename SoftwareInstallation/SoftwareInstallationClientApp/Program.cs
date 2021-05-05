@@ -12,6 +12,7 @@ namespace SoftwareInstallationClientApp
         .ConfigureWebHostDefaults(webBuilder =>
         {
             webBuilder.UseStartup<Startup>();
+            webBuilder.UseIISIntegration();
         });
     }
 }

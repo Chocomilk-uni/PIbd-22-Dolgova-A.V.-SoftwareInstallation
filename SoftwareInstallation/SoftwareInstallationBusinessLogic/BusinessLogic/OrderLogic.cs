@@ -13,6 +13,8 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
         private readonly IPackageStorage _packageStorage;
         private readonly IWarehouseStorage _warehouseStorage;
 
+        private readonly object locker = new object();
+
         public OrderLogic(IOrderStorage orderStorage, IPackageStorage packageStorage, IWarehouseStorage warehouseStorage)
         {
             _orderStorage = orderStorage;
@@ -48,7 +50,9 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
 
         public void TakeOrderInWork(ChangeStatusBindingModel model)
         {
-            var order = _orderStorage.GetElement(new OrderBindingModel { Id = model.OrderId });
+            lock (locker)
+            {
+                var order = _orderStorage.GetElement(new OrderBindingModel { Id = model.OrderId });
 
             if (order == null)
             {
@@ -93,6 +97,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                 Id = order.Id,
                 PackageId = order.PackageId,
                 ClientId = order.ClientId,
+                ImplementerId = order.ImplementerId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -118,6 +123,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                 Id = order.Id,
                 PackageId = order.PackageId,
                 ClientId = order.ClientId,
+                ImplementerId = order.ImplementerId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
