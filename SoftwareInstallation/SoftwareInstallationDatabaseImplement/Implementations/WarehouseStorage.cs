@@ -211,39 +211,52 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                 {
                     try
                     {
-                        foreach (KeyValuePair<int, (string, int)> warehouseComponent in components)
+                        foreach (var warehouseComponent in components)
                         {
-                            int requiredCount = warehouseComponent.Value.Item2 * packagesCount;
+                            int count = warehouseComponent.Value.Item2 * packagesCount;
                             IEnumerable<WarehouseComponent> warehouseComponents = context.WarehouseComponents.Where(warehouse => warehouse.ComponentId == warehouseComponent.Key);
+
+                            int accessiblyCount = warehouseComponents.Sum(warehouse => warehouse.Count);
+
+                            if (accessiblyCount < count)
+                            {
+                                throw new Exception();
+                            }
 
                             foreach (WarehouseComponent component in warehouseComponents)
                             {
-                                if (component.Count <= requiredCount)
+                                if (component.Count <= count)
                                 {
-                                    requiredCount -= component.Count;
+                                    count -= component.Count;
                                     context.WarehouseComponents.Remove(component);
+                                    context.SaveChanges();
                                 }
                                 else
                                 {
-                                    component.Count -= requiredCount;
-                                    requiredCount = 0;
+                                    component.Count -= count;
+                                    context.SaveChanges();
+                                    count = 0;
+                                }
+
+                                if (count == 0)
+                                {
                                     break;
                                 }
                             }
-
-                            if (requiredCount != 0)
-                            {
-                                throw new Exception("На складе недостаточно материалов");
-                            }
                         }
-                        context.SaveChanges();
+
                         transaction.Commit();
                         return true;
                     }
                     catch
                     {
                         transaction.Rollback();
-                        throw;
+                        /*
+                         * Пробрасывание ошибки завершит метод TakeOrderInWork в логике без изменения статуса,
+                         * поэтому было решено не пробрасывать ошибку, а просто вернуть false, чтобы статус заказа спокойно изменился
+                         * на требуются материалы.
+                        */
+                        return false;
                     }
                 }
             }

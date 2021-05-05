@@ -52,32 +52,49 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
         {
             lock (locker)
             {
-                var order = _orderStorage.GetElement(new OrderBindingModel { Id = model.OrderId });
+                var order = _orderStorage.GetElement(new OrderBindingModel
+                {
+                    Id = model.OrderId
+                });
 
-            if (order == null)
-            {
-                throw new Exception("Не найден заказ");
-            }
-            if (order.Status != OrderStatus.Принят)
-            {
-                throw new Exception("Заказ не в статусе \"Принят\"");
-            }
-            if (!_warehouseStorage.CheckRemove(_packageStorage.GetElement(new PackageBindingModel { Id = order.PackageId }).PackageComponents, order.Count))
-            {
-                throw new Exception("Недостаточно компонентов");
-            }
+                if (order == null)
+                {
+                    throw new Exception("Не найден заказ");
+                }
 
-            _orderStorage.Update(new OrderBindingModel 
-            {
-                Id = order.Id,
-                PackageId = order.PackageId,
-                ClientId = order.ClientId,
-                Count = order.Count,
-                Sum = order.Sum,
-                DateCreate = order.DateCreate,
-                DateImplement = DateTime.Now,
-                Status = OrderStatus.Выполняется
-            });
+                if (order.Status != OrderStatus.Принят && order.Status != OrderStatus.ТребуютсяМатериалы)
+                {
+                    throw new Exception("Заказ не в статусе \"Принят\"");
+                }
+
+                if (order.ImplementerId.HasValue)
+                {
+                    throw new Exception("У заказа уже есть исполнитель");
+                }
+
+                var updateBindingModel = new OrderBindingModel
+                {
+                    Id = order.Id,
+                    PackageId = order.PackageId,
+                    Count = order.Count,
+                    Sum = order.Sum,
+                    DateCreate = order.DateCreate,
+                    ClientId = order.ClientId
+                };
+
+                if (!_warehouseStorage.CheckRemove(_packageStorage.GetElement(new PackageBindingModel { Id = order.PackageId }).PackageComponents, order.Count))
+                {
+                    updateBindingModel.Status = OrderStatus.ТребуютсяМатериалы;
+                }
+                else
+                {
+                    updateBindingModel.DateImplement = DateTime.Now;
+                    updateBindingModel.Status = OrderStatus.Выполняется;
+                    updateBindingModel.ImplementerId = model.ImplementerId;
+                }
+
+                _orderStorage.Update(updateBindingModel);
+            }
         }
 
         public void FinishOrder(ChangeStatusBindingModel model)
