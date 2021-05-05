@@ -10,8 +10,8 @@ using SoftwareInstallationDatabaseImplement;
 namespace SoftwareInstallationDatabaseImplement.Migrations
 {
     [DbContext(typeof(SoftwareInstallationDatabase))]
-    [Migration("20210420135438_ImplInit")]
-    partial class ImplInit
+    [Migration("20210504121952_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,6 +81,33 @@ namespace SoftwareInstallationDatabaseImplement.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Implementers");
+                });
+
+            modelBuilder.Entity("SoftwareInstallationDatabaseImplement.Models.MessageInfo", b =>
+                {
+                    b.Property<string>("MessageId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateDelivery")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SenderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MessageId");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("MessageInfos");
                 });
 
             modelBuilder.Entity("SoftwareInstallationDatabaseImplement.Models.Order", b =>
@@ -167,6 +194,13 @@ namespace SoftwareInstallationDatabaseImplement.Migrations
                     b.HasIndex("PackageId");
 
                     b.ToTable("PackageComponents");
+                });
+
+            modelBuilder.Entity("SoftwareInstallationDatabaseImplement.Models.MessageInfo", b =>
+                {
+                    b.HasOne("SoftwareInstallationDatabaseImplement.Models.Client", "Client")
+                        .WithMany("MessageInfos")
+                        .HasForeignKey("ClientId");
                 });
 
             modelBuilder.Entity("SoftwareInstallationDatabaseImplement.Models.Order", b =>

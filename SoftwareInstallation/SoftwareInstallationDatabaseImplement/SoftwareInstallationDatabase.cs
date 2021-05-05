@@ -20,5 +20,6 @@ namespace SoftwareInstallationDatabaseImplement
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Implementer> Implementers { get; set; }
+        public virtual DbSet<MessageInfo> MessageInfos { get; set; }
     }
 }

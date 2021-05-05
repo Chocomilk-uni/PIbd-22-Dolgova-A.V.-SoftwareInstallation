@@ -1,4 +1,5 @@
-﻿using SoftwareInstallationBusinessLogic.BindingModels;
+﻿using Microsoft.EntityFrameworkCore;
+using SoftwareInstallationBusinessLogic.BindingModels;
 using SoftwareInstallationBusinessLogic.Interfaces;
 using SoftwareInstallationBusinessLogic.ViewModels;
 using SoftwareInstallationDatabaseImplement.Models;
@@ -36,7 +37,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
             using (var context = new SoftwareInstallationDatabase())
             {
                 return context.Clients
-                    .Where(rec => rec.Email == model.Email && rec.Password == rec.Password)
+                    .Where(rec => rec.Email == model.Email && rec.Password == model.Password)
                     .Select(rec => new ClientViewModel
                     {
                         Id = rec.Id,
