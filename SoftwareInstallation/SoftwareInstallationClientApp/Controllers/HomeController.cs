@@ -47,14 +47,14 @@ namespace SoftwareInstallationClientApp.Controllers
         {
             if (!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(fio))
             {
-                Program.Client.FIO = fio;
+                Program.Client.ClientFIO = fio;
                 Program.Client.Email = login;
                 Program.Client.Password = password;
 
                 APIClient.PostRequest("api/client/updatedata", new ClientBindingModel
                 {
                     Id = Program.Client.Id,
-                    FIO = fio,
+                    ClientFIO = fio,
                     Email = login,
                     Password = password
                 });
@@ -109,7 +109,7 @@ namespace SoftwareInstallationClientApp.Controllers
             {
                 APIClient.PostRequest("api/client/register", new ClientBindingModel
                 {
-                    FIO = fio,
+                    ClientFIO = fio,
                     Email = login,
                     Password = password
                 });

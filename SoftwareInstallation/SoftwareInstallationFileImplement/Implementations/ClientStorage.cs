@@ -81,7 +81,7 @@ namespace SoftwareInstallationFileImplement.Implementations
 
         private Client CreateModel(ClientBindingModel model, Client client)
         {
-            client.FIO = model.FIO;
+            client.ClientFIO = model.ClientFIO;
             client.Email = model.Email;
             client.Password = model.Password;
 
@@ -93,7 +93,7 @@ namespace SoftwareInstallationFileImplement.Implementations
             return new ClientViewModel
             {
                 Id = client.Id,
-                FIO = client.FIO,
+                ClientFIO = client.ClientFIO,
                 Email = client.Email,
                 Password = client.Password
             };

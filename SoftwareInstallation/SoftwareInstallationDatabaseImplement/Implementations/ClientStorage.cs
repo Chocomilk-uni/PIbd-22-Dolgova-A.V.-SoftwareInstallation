@@ -19,7 +19,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                     .Select(rec => new ClientViewModel
                     {
                         Id = rec.Id,
-                        FIO = rec.FIO,
+                        ClientFIO = rec.ClientFIO,
                         Email = rec.Email,
                         Password = rec.Password
                     })
@@ -41,7 +41,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                     .Select(rec => new ClientViewModel
                     {
                         Id = rec.Id,
-                        FIO = rec.FIO,
+                        ClientFIO = rec.ClientFIO,
                         Email = rec.Email,
                         Password = rec.Password
                     })
@@ -64,7 +64,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                     new ClientViewModel
                     {
                         Id = client.Id,
-                        FIO = client.FIO,
+                        ClientFIO = client.ClientFIO,
                         Email = client.Email,
                         Password = client.Password
                     } :
@@ -116,7 +116,7 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
 
         private Client CreateModel(ClientBindingModel model, Client client)
         {
-            client.FIO = model.FIO;
+            client.ClientFIO = model.ClientFIO;
             client.Email = model.Email;
             client.Password = model.Password;
 
