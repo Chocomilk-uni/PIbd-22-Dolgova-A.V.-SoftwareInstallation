@@ -25,7 +25,6 @@ namespace SoftwareInstallationFileImplement
         public List<Implementer> Implementers { get; set; }
         public List<MessageInfo> MessageInfos { get; set; }
 
-
         private FileDataListSingleton()
         {
             Components = LoadComponents();
@@ -194,7 +193,7 @@ namespace SoftwareInstallationFileImplement
                         MessageId = elem.Attribute("MessageId").Value,
                         ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
                         SenderName = elem.Element("SenderName").Value,
-                        DateDelivery = Convert.ToDateTime(elem.Element("DateDelivery").Value),
+                        DateDelivery = Convert.ToDateTime(elem.Element("DateDelivery")?.Value),
                         Subject = elem.Element("Subject").Value,
                         Body = elem.Element("Body").Value
                     });
