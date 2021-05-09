@@ -51,7 +51,7 @@ namespace SoftwareInstallationFileImplement.Implementations
         private MessageInfo CreateModel(MessageInfoBindingModel model, MessageInfo message)
         {
             message.ClientId = model.ClientId;
-            message.SenderName = model.FromMailAddress;
+            message.SenderName = source.Clients.FirstOrDefault(rec => rec.Id == model.ClientId)?.ClientFIO;
             message.DateDelivery = model.DateDelivery;
             message.Subject = model.Subject;
             message.Body = model.Body;

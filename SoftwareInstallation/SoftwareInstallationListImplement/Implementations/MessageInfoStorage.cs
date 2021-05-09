@@ -43,7 +43,11 @@ namespace SoftwareInstallationListImplement.Implementations
                     result.Add(CreateModel(messageInfo));
                 }
             }
-            return result;
+            if (result.Count > 0)
+            {
+                return result;
+            }
+            return null;
         }
 
         public void Insert(MessageInfoBindingModel model)
@@ -58,7 +62,19 @@ namespace SoftwareInstallationListImplement.Implementations
 
         private MessageInfo CreateModel(MessageInfoBindingModel model, MessageInfo messageInfo)
         {
-            messageInfo.ClientId = model.ClientId;
+            string clientName = string.Empty;
+            foreach (var client in source.Clients)
+            {
+
+                if (client.Id == model.ClientId)
+                {
+                    clientName = client.ClientFIO;
+                    break;
+                }
+            }
+
+            messageInfo.MessageId = model.MessageId;
+            messageInfo.SenderName = clientName;
             messageInfo.Subject = model.Subject;
             messageInfo.Body = model.Body;
             messageInfo.DateDelivery = model.DateDelivery;
