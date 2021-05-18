@@ -79,18 +79,16 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                     Count = order.Count,
                     Sum = order.Sum,
                     DateCreate = order.DateCreate,
-                    ClientId = order.ClientId
+                    DateImplement = DateTime.Now,
+                    Status = OrderStatus.Выполняется,
+                    ClientId = order.ClientId,
+                    ImplementerId = model.ImplementerId
                 };
 
                 if (!_warehouseStorage.CheckRemove(_packageStorage.GetElement(new PackageBindingModel { Id = order.PackageId }).PackageComponents, order.Count))
                 {
                     updateBindingModel.Status = OrderStatus.ТребуютсяМатериалы;
-                }
-                else
-                {
-                    updateBindingModel.DateImplement = DateTime.Now;
-                    updateBindingModel.Status = OrderStatus.Выполняется;
-                    updateBindingModel.ImplementerId = model.ImplementerId;
+                    updateBindingModel.ImplementerId = null;
                 }
 
                 _orderStorage.Update(updateBindingModel);

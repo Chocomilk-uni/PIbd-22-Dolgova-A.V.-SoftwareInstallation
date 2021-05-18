@@ -61,8 +61,11 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
 
             //Потом заказы со статусом «Требуются материалы» 
 
-            var ordersWithRequiredMaterials = await Task.Run(() => _orderLogic.Read(null)
-            .Where(rec => rec.Status == OrderStatus.ТребуютсяМатериалы).ToList());
+            var ordersWithRequiredMaterials = await Task.Run(() => _orderStorage.GetFilteredList(new OrderBindingModel
+            {
+                MaterialsRequired = true,
+                ImplementerId = implementer.Id
+            }));
 
             foreach (var order in ordersWithRequiredMaterials)
             {
@@ -74,12 +77,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                         ImplementerId = implementer.Id
                     });
 
-                    var processedOrder = _orderStorage.GetElement(new OrderBindingModel
-                    {
-                        Id = order.Id
-                    });
-
-                    if (processedOrder.Status == OrderStatus.ТребуютсяМатериалы)
+                    if (_orderStorage.GetElement(new OrderBindingModel { Id = order.Id }).Status == OrderStatus.ТребуютсяМатериалы)
                     {
                         continue;
                     }

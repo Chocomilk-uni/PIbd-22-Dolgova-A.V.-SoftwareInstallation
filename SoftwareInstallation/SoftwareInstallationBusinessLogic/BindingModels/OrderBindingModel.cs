@@ -42,5 +42,8 @@ namespace SoftwareInstallationBusinessLogic.BindingModels
 
         [DataMember]
         public bool? FreeOrders { get; set; }
+
+        [DataMember]
+        public bool? MaterialsRequired { get; set; }
     }
 }
