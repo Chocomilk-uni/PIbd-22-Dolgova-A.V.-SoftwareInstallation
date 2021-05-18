@@ -1,6 +1,6 @@
-﻿using SoftwareInstallationBusinessLogic.Enums;
+﻿using SoftwareInstallationBusinessLogic.Attributes;
+using SoftwareInstallationBusinessLogic.Enums;
 using System;
-using System.ComponentModel;
 using System.Runtime.Serialization;
 
 namespace SoftwareInstallationBusinessLogic.ViewModels
@@ -8,6 +8,7 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
     [DataContract]
     public class OrderViewModel
     {
+        [Column(title: "Номер", width: 50)]
         [DataMember]
         public int Id { get; set; }
 
@@ -20,38 +21,37 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
         [DataMember]
         public int? ImplementerId { get; set; }
 
+        [Column(title: "Клиент", width: 150)]
         [DataMember]
-        [DisplayName("Клиент")]
         public string ClientFIO { get; set; }
 
+        [Column(title: "Исполнитель", width: 150)]
         [DataMember]
-        [DisplayName("Исполнитель")]
         public string ImplementerFIO { get; set; }
 
+        [Column(title: "Пакет", gridViewAutoSize: GridViewAutoSize.Fill)]
         [DataMember]
-        [DisplayName("Пакет")]
         public string PackageName { get; set; }
-        
+
+        [Column(title: "Количество", width: 30)]
         [DataMember]
-        [DisplayName("Количество")]
         public int Count { get; set; }
 
+        [Column(title: "Сумма", gridViewAutoSize: GridViewAutoSize.ColumnHeader)]
         [DataMember]
-        [DisplayName("Сумма")]
         public decimal Sum { get; set; }
 
+        [Column(title: "Статус", gridViewAutoSize: GridViewAutoSize.AllCells)]
         [DataMember]
-        [DisplayName("Статус")]
         public OrderStatus Status { get; set; }
 
+        [Column(title: "Дата создания", gridViewAutoSize: GridViewAutoSize.AllCells)]
         [DataMember]
-        [DisplayName("Дата создания")]
         public DateTime DateCreate { get; set; }
 
+        [Column(title: "Дата выполнения", gridViewAutoSize: GridViewAutoSize.AllCells)]
         [DataMember]
-        [DisplayName("Дата выполнения")]
         public DateTime? DateImplement { get; set; }
-
  
     }
 }

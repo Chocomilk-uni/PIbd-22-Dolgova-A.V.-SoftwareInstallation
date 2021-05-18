@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using SoftwareInstallationBusinessLogic.Attributes;
+using SoftwareInstallationBusinessLogic.Enums;
 using System.Runtime.Serialization;
 
 namespace SoftwareInstallationBusinessLogic.ViewModels
@@ -9,16 +10,16 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
         [DataMember]
         public int Id { get; set; }
 
+        [Column(title: "ФИО", gridViewAutoSize: GridViewAutoSize.AllCells)]
         [DataMember]
-        [DisplayName("ФИО")]
         public string ClientFIO { get; set; }
 
+        [Column(title: "Почта", gridViewAutoSize: GridViewAutoSize.AllCells)]
         [DataMember]
-        [DisplayName("Почта")]
         public string Email { get; set; }
 
+        [Column(title: "Пароль", gridViewAutoSize: GridViewAutoSize.Fill)]
         [DataMember]
-        [DisplayName("Пароль")]
         public string Password { get; set; }
     }
 }
