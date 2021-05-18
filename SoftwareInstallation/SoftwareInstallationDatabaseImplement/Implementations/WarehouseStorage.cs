@@ -216,9 +216,9 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
                             int requiredCount = warehouseComponent.Value.Item2 * packagesCount;
                             IEnumerable<WarehouseComponent> warehouseComponents = context.WarehouseComponents.Where(warehouse => warehouse.ComponentId == warehouseComponent.Key);
 
-                            int accessiblyCount = warehouseComponents.Sum(warehouse => warehouse.Count);
+                            int accessibleCount = warehouseComponents.Sum(warehouse => warehouse.Count);
 
-                            if (accessiblyCount < requiredCount)
+                            if (accessibleCount < requiredCount)
                             {
                                 throw new Exception();
                             }
