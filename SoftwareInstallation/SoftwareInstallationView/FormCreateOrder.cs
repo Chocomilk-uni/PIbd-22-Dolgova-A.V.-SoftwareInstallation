@@ -42,7 +42,7 @@ namespace SoftwareInstallationView
 
                 if (listClients != null)
                 {
-                    comboBoxClient.DisplayMember = "FIO";
+                    comboBoxClient.DisplayMember = "ClientFIO";
                     comboBoxClient.ValueMember = "Id";
                     comboBoxClient.DataSource = listClients;
                     comboBoxClient.SelectedItem = null;

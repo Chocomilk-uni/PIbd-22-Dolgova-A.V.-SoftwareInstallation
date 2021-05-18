@@ -31,21 +31,14 @@ namespace SoftwareInstallationView
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.ReportOrdersForInfoViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.buttonSaveToPdf = new System.Windows.Forms.Button();
             this.buttonFormReport = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersForInfoViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ReportOrdersForInfoViewModelBindingSource
-            // 
-            this.ReportOrdersForInfoViewModelBindingSource.DataSource = typeof(SoftwareInstallationBusinessLogic.ViewModels.ReportAllOrdersInfoViewModel);
             // 
             // reportViewer
             // 
             reportDataSource1.Name = "DataSetOrdersInfo";
-            reportDataSource1.Value = this.ReportOrdersForInfoViewModelBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer.LocalReport.ReportEmbeddedResource = "SoftwareInstallationView.ReportAllOrdersInfo.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(1, 36);
@@ -84,7 +77,6 @@ namespace SoftwareInstallationView
             this.Controls.Add(this.buttonFormReport);
             this.Name = "FormReportAllOrdersInfo";
             this.Text = "Информация о заказах";
-            ((System.ComponentModel.ISupportInitialize)(this.ReportOrdersForInfoViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -94,6 +86,5 @@ namespace SoftwareInstallationView
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
         private System.Windows.Forms.Button buttonSaveToPdf;
         private System.Windows.Forms.Button buttonFormReport;
-        private System.Windows.Forms.BindingSource ReportOrdersForInfoViewModelBindingSource;
     }
 }

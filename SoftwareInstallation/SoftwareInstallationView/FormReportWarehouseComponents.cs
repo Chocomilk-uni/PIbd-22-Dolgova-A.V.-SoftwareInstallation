@@ -1,6 +1,9 @@
 ﻿using SoftwareInstallationBusinessLogic.BindingModels;
 using SoftwareInstallationBusinessLogic.BusinessLogic;
+using SoftwareInstallationBusinessLogic.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Windows.Forms;
 using Unity;
 
@@ -23,7 +26,8 @@ namespace SoftwareInstallationView
         {
             try
             {
-                var dict = logic.GetWarehouseComponent();
+                MethodInfo method = logic.GetType().GetMethod("GetWarehouseComponent");
+                List<ReportWarehouseComponentViewModel> dict = (List<ReportWarehouseComponentViewModel>)method.Invoke(logic, null);
 
                 if (dict != null)
                 {
@@ -57,10 +61,16 @@ namespace SoftwareInstallationView
                 {
                     try
                     {
-                        logic.SaveWarehouseComponentsToExcelFile(new ReportBindingModel
+                        MethodInfo method = logic.GetType().GetMethod("SaveWarehouseComponentsToExcel");
+
+                        method.Invoke(logic, new object[]
                         {
-                            FileName = dialog.FileName
+                            new ReportBindingModel
+                            {
+                                FileName = dialog.FileName
+                            }
                         });
+
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)

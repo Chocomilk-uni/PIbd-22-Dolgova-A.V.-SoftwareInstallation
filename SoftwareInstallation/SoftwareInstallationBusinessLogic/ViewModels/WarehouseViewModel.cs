@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SoftwareInstallationBusinessLogic.Attributes;
+using SoftwareInstallationBusinessLogic.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -8,13 +10,13 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
     {
         public int Id { get; set; }
 
-        [DisplayName("Название склада")]
+        [Column(title: "Название склада", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string WarehouseName { get; set; }
 
-        [DisplayName("ФИО ответственного")]
+        [Column(title: "ФИО ответственного", gridViewAutoSize: GridViewAutoSize.AllCells)]
         public string WarehouseManagerFullName { get; set; }
 
-        [DisplayName("Дата создания")]
+        [Column(title: "Дата создания", gridViewAutoSize: GridViewAutoSize.AllCells)]
         public DateTime DateCreate { get; set; }
         public Dictionary<int, (string, int)> WarehouseComponents { get; set; }
     }

@@ -1,7 +1,10 @@
 ﻿using Microsoft.Reporting.WinForms;
 using SoftwareInstallationBusinessLogic.BindingModels;
 using SoftwareInstallationBusinessLogic.BusinessLogic;
+using SoftwareInstallationBusinessLogic.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Windows.Forms;
 using Unity;
 
@@ -24,7 +27,8 @@ namespace SoftwareInstallationView
         {
             try
             {
-                var dataSource = logic.GetOrdersForInfo();
+                MethodInfo method = logic.GetType().GetMethod("GetOrdersForInfo");
+                List<ReportAllOrdersInfoViewModel> dataSource = (List<ReportAllOrdersInfoViewModel>)method.Invoke(logic, null);
 
                 ReportDataSource source = new ReportDataSource("DataSetOrders", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
@@ -44,10 +48,16 @@ namespace SoftwareInstallationView
                 {
                     try
                     {
-                        logic.SaveOrdersForInfoToPdfFile(new ReportBindingModel
+                        MethodInfo method = logic.GetType().GetMethod("SaveOrdersForInfoToPdfFile");
+
+                        method.Invoke(logic, new object[]
                         {
-                            FileName = dialog.FileName
+                            new ReportBindingModel
+                            {
+                                FileName = dialog.FileName
+                            }
                         });
+
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)

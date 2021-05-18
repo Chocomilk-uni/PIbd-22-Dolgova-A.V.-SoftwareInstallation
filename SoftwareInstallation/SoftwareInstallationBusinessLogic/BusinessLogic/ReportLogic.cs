@@ -6,6 +6,7 @@ using SoftwareInstallationBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace SoftwareInstallationBusinessLogic.BusinessLogic
 {
@@ -116,6 +117,7 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
         //Сохранение складов в Word-файл
         public void SaveWarehousesToWordFile(ReportBindingModel model)
         {
+
             SaveToWord.CreateDocWithWarehouses(new WordWarehousesInfo
             {
                 FileName = model.FileName,
@@ -127,46 +129,54 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
         //Сохранение компонентов с указанием пакетов в Excel-файл
         public void SavePackageComponentToExcelFile(ReportBindingModel model)
         {
+            MethodInfo method = GetType().GetMethod("GetPackageComponent");
+
             SaveToExcel.CreateDocWithPackageComponents(new ExcelPackageComponentsInfo
             {
                 FileName = model.FileName,
                 Title = "Список компонентов по пакетам",
-                PackageComponents = GetPackageComponent()
+                PackageComponents = (List<ReportPackageComponentViewModel>)method.Invoke(this, null)
             });
         }
 
         //Сохранение компонентов с указанием складов в Excel-файл
         public void SaveWarehouseComponentsToExcelFile(ReportBindingModel model)
         {
+            MethodInfo method = GetType().GetMethod("GetWarehouseComponent");
+
             SaveToExcel.CreateDocWithWarehouseComponents(new ExcelWarehouseComponentsInfo
             {
                 FileName = model.FileName,
                 Title = "Список компонентов по складам",
-                WarehouseComponents = GetWarehouseComponent()
+                WarehouseComponents = (List<ReportWarehouseComponentViewModel>)method.Invoke(this, null)
             });
         }
 
         //Сохранение заказов по определённым датам в Pdf-файл
         public void SaveOrdersByDatesToPdfFile(ReportBindingModel model)
         {
+            MethodInfo method = GetType().GetMethod("GetOrdersByDates");
+
             SaveToPdf.CreateDocWithOrdersByDates(new PdfOrdersByDatesInfo
             {
                 FileName = model.FileName,
                 Title = "Список заказов",
                 DateFrom = model.DateFrom.Value,
                 DateTo = model.DateTo.Value,
-                Orders = GetOrdersByDates(model)
+                Orders = (List<ReportOrdersByDatesViewModel>)method.Invoke(this, new object[] { model })
             });
         }
 
         //Сохранение всех заказов в Pdf-файл
         public void SaveOrdersForInfoToPdfFile(ReportBindingModel model)
         {
+            MethodInfo method = GetType().GetMethod("GetOrdersForInfo");
+
             SaveToPdf.CreateDocWithAllOrders(new PdfAllOrdersInfo
             {
                 FileName = model.FileName,
                 Title = "Список заказов",
-                Orders = GetOrdersForInfo()
+                Orders = (List<ReportAllOrdersInfoViewModel>)method.Invoke(this, null)
             });
         }
     }

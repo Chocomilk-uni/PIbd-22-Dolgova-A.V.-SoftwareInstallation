@@ -2,6 +2,7 @@
 using SoftwareInstallationBusinessLogic.BindingModels;
 using SoftwareInstallationBusinessLogic.BusinessLogic;
 using System;
+using System.Reflection;
 using System.Windows.Forms;
 using Unity;
 
@@ -33,10 +34,14 @@ namespace SoftwareInstallationView
                 ReportParameter parameter = new ReportParameter("ReportParameterPeriod", "с " + dateTimePickerDateFrom.Value.ToShortDateString() + " по " + dateTimePickerDateTo.Value.ToShortDateString());
                 reportViewer.LocalReport.SetParameters(parameter);
 
-                var dataSource = logic.GetOrdersByDates(new ReportBindingModel
+                MethodInfo method = logic.GetType().GetMethod("GetOrdersByDates");
+                var dataSource = method.Invoke(logic, new object[]
                 {
-                    DateFrom = dateTimePickerDateFrom.Value,
-                    DateTo = dateTimePickerDateTo.Value
+                    new ReportBindingModel
+                    {
+                        DateFrom = dateTimePickerDateFrom.Value,
+                        DateTo = dateTimePickerDateTo.Value
+                    }
                 });
                 ReportDataSource source = new ReportDataSource("DataSetOrders", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
@@ -62,12 +67,16 @@ namespace SoftwareInstallationView
                 {
                     try
                     {
-                        logic.SaveOrdersByDatesToPdfFile(new ReportBindingModel
-                        {
-                            FileName = dialog.FileName,
-                            DateFrom = dateTimePickerDateFrom.Value,
-                            DateTo = dateTimePickerDateTo.Value
-                        });
+                        MethodInfo method = GetType().GetMethod("SaveOrdersByDatesToPdfFile");
+                        method.Invoke(logic, new object[]
+                            {
+                                new ReportBindingModel
+                                {
+                                    FileName = dialog.FileName,
+                                    DateFrom = dateTimePickerDateFrom.Value,
+                                    DateTo = dateTimePickerDateTo.Value
+                                }
+                            });
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
