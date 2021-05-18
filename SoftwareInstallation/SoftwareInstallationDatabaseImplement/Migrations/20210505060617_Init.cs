@@ -65,18 +65,25 @@ namespace SoftwareInstallationDatabaseImplement.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Warehouses",
+                name: "MessageInfos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    WarehouseName = table.Column<string>(nullable: false),
-                    WarehouseManagerFullName = table.Column<string>(nullable: false),
-                    DateCreate = table.Column<DateTime>(nullable: false)
+                    MessageId = table.Column<string>(nullable: false),
+                    ClientId = table.Column<int>(nullable: true),
+                    SenderName = table.Column<string>(nullable: true),
+                    DateDelivery = table.Column<DateTime>(nullable: false),
+                    Subject = table.Column<string>(nullable: true),
+                    Body = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Warehouses", x => x.Id);
+                    table.PrimaryKey("PK_MessageInfos", x => x.MessageId);
+                    table.ForeignKey(
+                        name: "FK_MessageInfos_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -144,32 +151,10 @@ namespace SoftwareInstallationDatabaseImplement.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "WarehouseComponents",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ComponentId = table.Column<int>(nullable: false),
-                    WarehouseId = table.Column<int>(nullable: false),
-                    Count = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WarehouseComponents", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_WarehouseComponents_Components_ComponentId",
-                        column: x => x.ComponentId,
-                        principalTable: "Components",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_WarehouseComponents_Warehouses_WarehouseId",
-                        column: x => x.WarehouseId,
-                        principalTable: "Warehouses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_MessageInfos_ClientId",
+                table: "MessageInfos",
+                column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_ClientId",
@@ -195,28 +180,18 @@ namespace SoftwareInstallationDatabaseImplement.Migrations
                 name: "IX_PackageComponents_PackageId",
                 table: "PackageComponents",
                 column: "PackageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WarehouseComponents_ComponentId",
-                table: "WarehouseComponents",
-                column: "ComponentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WarehouseComponents_WarehouseId",
-                table: "WarehouseComponents",
-                column: "WarehouseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "MessageInfos");
+
+            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "PackageComponents");
-
-            migrationBuilder.DropTable(
-                name: "WarehouseComponents");
 
             migrationBuilder.DropTable(
                 name: "Clients");
@@ -225,13 +200,10 @@ namespace SoftwareInstallationDatabaseImplement.Migrations
                 name: "Implementers");
 
             migrationBuilder.DropTable(
-                name: "Packages");
-
-            migrationBuilder.DropTable(
                 name: "Components");
 
             migrationBuilder.DropTable(
-                name: "Warehouses");
+                name: "Packages");
         }
     }
 }

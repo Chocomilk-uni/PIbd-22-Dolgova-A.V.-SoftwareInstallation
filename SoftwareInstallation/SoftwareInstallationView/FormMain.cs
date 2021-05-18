@@ -175,5 +175,11 @@ namespace SoftwareInstallationView
             _workModeling.DoWork();
             LoadData();
         }
+
+        private void MailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormMail>();
+            form.ShowDialog();
+        }
     }
 }

@@ -33,19 +33,28 @@ namespace SoftwareInstallationClientApp.Controllers
             return View(Program.Client);
         }
 
+        public IActionResult Mail()
+        {
+            if (Program.Client == null)
+            {
+                return Redirect("~/Home/Enter");
+            }
+            return View(APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/getmessages?clientId={Program.Client.Id}"));
+        }
+
         [HttpPost]
         public void Privacy(string login, string password, string fio)
         {
             if (!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(fio))
             {
-                Program.Client.FIO = fio;
+                Program.Client.ClientFIO = fio;
                 Program.Client.Email = login;
                 Program.Client.Password = password;
 
                 APIClient.PostRequest("api/client/updatedata", new ClientBindingModel
                 {
                     Id = Program.Client.Id,
-                    FIO = fio,
+                    ClientFIO = fio,
                     Email = login,
                     Password = password
                 });
@@ -100,7 +109,7 @@ namespace SoftwareInstallationClientApp.Controllers
             {
                 APIClient.PostRequest("api/client/register", new ClientBindingModel
                 {
-                    FIO = fio,
+                    ClientFIO = fio,
                     Email = login,
                     Password = password
                 });

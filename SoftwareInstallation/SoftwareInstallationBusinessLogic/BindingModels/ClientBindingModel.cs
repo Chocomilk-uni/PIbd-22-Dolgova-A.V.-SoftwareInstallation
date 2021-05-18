@@ -9,7 +9,7 @@ namespace SoftwareInstallationBusinessLogic.BindingModels
         public int? Id { get; set; }
 
         [DataMember]
-        public string FIO { get; set; }
+        public string ClientFIO { get; set; }
 
         [DataMember]
         public string Email { get; set; }

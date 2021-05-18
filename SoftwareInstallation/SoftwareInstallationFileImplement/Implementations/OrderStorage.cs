@@ -122,7 +122,7 @@ namespace SoftwareInstallationFileImplement.Implementations
                 PackageName = source.Packages.FirstOrDefault(package => package.Id == order.PackageId)?.PackageName,
                 PackageId = order.PackageId,
                 ClientId = order.ClientId,
-                ClientFIO = source.Clients.FirstOrDefault(c => c.Id == order.ClientId)?.FIO,
+                ClientFIO = source.Clients.FirstOrDefault(c => c.Id == order.ClientId)?.ClientFIO,
                 ImplementerId = order.ImplementerId,
                 ImplementerFIO = source.Implementers.FirstOrDefault(imp => imp.Id == order.ImplementerId)?.FIO,
                 Count = order.Count,

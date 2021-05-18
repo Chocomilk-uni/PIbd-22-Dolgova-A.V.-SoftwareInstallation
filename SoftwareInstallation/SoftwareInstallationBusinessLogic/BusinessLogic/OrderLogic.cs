@@ -1,5 +1,6 @@
 ﻿using SoftwareInstallationBusinessLogic.BindingModels;
 using SoftwareInstallationBusinessLogic.Enums;
+using SoftwareInstallationBusinessLogic.HelperModels;
 using SoftwareInstallationBusinessLogic.Interfaces;
 using SoftwareInstallationBusinessLogic.ViewModels;
 using System;
@@ -12,14 +13,16 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
         private readonly IOrderStorage _orderStorage;
         private readonly IPackageStorage _packageStorage;
         private readonly IWarehouseStorage _warehouseStorage;
+        private readonly IClientStorage _clientStorage;
 
         private readonly object locker = new object();
 
-        public OrderLogic(IOrderStorage orderStorage, IPackageStorage packageStorage, IWarehouseStorage warehouseStorage)
+        public OrderLogic(IOrderStorage orderStorage, IPackageStorage packageStorage, IClientStorage clientStorage, IWarehouseStorage warehouseStorage)
         {
             _orderStorage = orderStorage;
             _packageStorage = packageStorage;
             _warehouseStorage = warehouseStorage;
+            _clientStorage = clientStorage;
         }
 
         public List<OrderViewModel> Read(OrderBindingModel model)
@@ -45,6 +48,16 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
                 Status = OrderStatus.Принят
+            });
+
+            MailLogic.MailSendAsync(new MailSendInfo
+            {
+                MaidAddress = _clientStorage.GetElement(new ClientBindingModel
+                {
+                    Id = model.ClientId
+                })?.Email,
+                Subject = $"Новый заказ",
+                Text = $"Заказ от {DateTime.Now} на сумму {model.Sum:N2} принят."
             });
         }
 
@@ -92,6 +105,17 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                 }
 
                 _orderStorage.Update(updateBindingModel);
+
+
+                MailLogic.MailSendAsync(new MailSendInfo
+                {
+                    MaidAddress = _clientStorage.GetElement(new ClientBindingModel
+                    {
+                        Id = order.ClientId
+                    })?.Email,
+                    Subject = $"Заказ №{order.Id}",
+                    Text = $"Заказ №{order.Id} передан в работу."
+                });
             }
         }
 
@@ -119,6 +143,16 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Готов
             });
+
+            MailLogic.MailSendAsync(new MailSendInfo
+            {
+                MaidAddress = _clientStorage.GetElement(new ClientBindingModel
+                {
+                    Id = order.ClientId
+                })?.Email,
+                Subject = $"Заказ №{order.Id}",
+                Text = $"Заказ №{order.Id} выполнен."
+            });
         }
 
         public void PayOrder(ChangeStatusBindingModel model)
@@ -144,6 +178,16 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
                 DateCreate = order.DateCreate,
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен
+            });
+
+            MailLogic.MailSendAsync(new MailSendInfo
+            {
+                MaidAddress = _clientStorage.GetElement(new ClientBindingModel
+                {
+                    Id = order.ClientId
+                })?.Email,
+                Subject = $"Заказ №{order.Id}",
+                Text = $"Заказ №{order.Id} оплачен."
             });
         }
     }

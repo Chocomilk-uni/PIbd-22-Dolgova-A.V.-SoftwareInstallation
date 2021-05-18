@@ -9,7 +9,7 @@ namespace SoftwareInstallationDatabaseImplement.Models
         public int Id { get; set; }
 
         [Required]
-        public string FIO { get; set; }
+        public string ClientFIO { get; set; }
 
         [Required]
         public string Email { get; set; }
@@ -19,5 +19,8 @@ namespace SoftwareInstallationDatabaseImplement.Models
 
         [ForeignKey("ClientId")]
         public virtual List<Order> Orders { get; set; }
+
+        [ForeignKey("ClientId")]
+        public virtual List<MessageInfo> MessageInfos { get; set; }
     }
 }
