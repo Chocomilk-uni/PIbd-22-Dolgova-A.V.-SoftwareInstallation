@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SoftwareInstallationBusinessLogic.Attributes;
+using SoftwareInstallationBusinessLogic.Enums;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 
@@ -10,12 +12,12 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
         [DataMember]
         public int Id { get; set; }
 
+        [Column(title: "Название пакета", gridViewAutoSize: GridViewAutoSize.Fill)]
         [DataMember]
-        [DisplayName("Название пакета")]
         public string PackageName { get; set; }
 
+        [Column(title: "Цена", width: 100)]
         [DataMember]
-        [DisplayName("Цена")]
         public decimal Price { get; set; }
 
         [DataMember]

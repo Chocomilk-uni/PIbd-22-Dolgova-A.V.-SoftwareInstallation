@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using SoftwareInstallationBusinessLogic.Attributes;
+using SoftwareInstallationBusinessLogic.Enums;
 
 namespace SoftwareInstallationBusinessLogic.ViewModels
 {
@@ -6,7 +7,7 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
     {
         public int Id { get; set; }
 
-        [DisplayName("Название компонента")]
+        [Column(title: "Название компонента", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ComponentName { get; set; }
     }
 }

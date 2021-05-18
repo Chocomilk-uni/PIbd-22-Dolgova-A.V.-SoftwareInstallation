@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using SoftwareInstallationBusinessLogic.Attributes;
+using SoftwareInstallationBusinessLogic.Enums;
 
 namespace SoftwareInstallationBusinessLogic.ViewModels
 {
@@ -6,13 +7,13 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
     {
         public int Id { get; set; }
 
-        [DisplayName("ФИО исполнителя")]
+        [Column(title: "ФИО", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string FIO { get; set; }
 
-        [DisplayName("Время на заказ")]
+        [Column(title: "Время на заказ", gridViewAutoSize: GridViewAutoSize.ColumnHeader)]
         public int WorkingTime { get; set; }
 
-        [DisplayName("Время на перерыв")]
+        [Column(title: "Время на перерыв", gridViewAutoSize: GridViewAutoSize.ColumnHeader)]
         public int PauseTime { get; set; }
     }
 }
