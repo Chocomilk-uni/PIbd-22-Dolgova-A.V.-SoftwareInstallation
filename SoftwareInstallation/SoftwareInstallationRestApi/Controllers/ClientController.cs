@@ -4,6 +4,7 @@ using SoftwareInstallationBusinessLogic.BusinessLogic;
 using SoftwareInstallationBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace SoftwareInstallationRestApi.Controllers
@@ -18,10 +19,13 @@ namespace SoftwareInstallationRestApi.Controllers
         private readonly int _passwordMaxLength = 50;
         private readonly int _passwordMinLength = 10;
 
+        private readonly int messagesOnPage = 2;
+
         public ClientController(ClientLogic logic, MailLogic mailLogic)
         {
             _logic = logic;
             _mailLogic = mailLogic;
+            if (messagesOnPage < 1) { messagesOnPage = 5; }
         }
 
         [HttpGet]
@@ -36,10 +40,12 @@ namespace SoftwareInstallationRestApi.Controllers
         }
 
         [HttpGet]
-        public List<MessageInfoViewModel> GetMessages(int clientId) => _mailLogic.Read(new MessageInfoBindingModel
+        public (List<MessageInfoViewModel>, bool) GetMessages(int clientId, int page)
         {
-            ClientId = clientId
-        });
+            var list = _mailLogic.Read(new MessageInfoBindingModel { ClientId = clientId, ToSkip = (page - 1) * messagesOnPage, ToTake = messagesOnPage + 1 }).ToList();
+            var hasNext = !(list.Count() <= messagesOnPage);
+            return (list.Take(messagesOnPage).ToList(), hasNext);
+        }
 
         [HttpPost]
         public void Register(ClientBindingModel model)

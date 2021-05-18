@@ -1,4 +1,5 @@
-﻿using SoftwareInstallationBusinessLogic.BusinessLogic;
+﻿using SoftwareInstallationBusinessLogic.BindingModels;
+using SoftwareInstallationBusinessLogic.BusinessLogic;
 using System;
 using System.Windows.Forms;
 using Unity;
@@ -11,13 +12,18 @@ namespace SoftwareInstallationView
         public new IUnityContainer Container { get; set; }
         private readonly MailLogic logic;
 
+        private bool hasNext = false;
+        private readonly int mailsOnPage = 2;
+        private int currentPage = 0;
+
         public FormMail(MailLogic logic)
         {
-            InitializeComponent();
             this.logic = logic;
+            if (mailsOnPage < 1) { mailsOnPage = 5; }
+            InitializeComponent();
         }
 
-        private void FormComponents_Load(object sender, EventArgs e)
+        private void FormMail_Load(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -26,7 +32,18 @@ namespace SoftwareInstallationView
         {
             try
             {
-                var list = logic.Read(null);
+                var list = logic.Read(new MessageInfoBindingModel { ToSkip = currentPage * mailsOnPage, ToTake = mailsOnPage + 1 });
+
+                hasNext = !(list.Count <= mailsOnPage);
+
+                if (hasNext)
+                {
+                    buttonNext.Enabled = true;
+                }
+                else
+                {
+                    buttonNext.Enabled = false;
+                }
 
                 if (list != null)
                 {
@@ -38,6 +55,32 @@ namespace SoftwareInstallationView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonNext_Click(object sender, EventArgs e)
+        {
+            if (hasNext)
+            {
+                currentPage++;
+                textBoxPage.Text = (currentPage + 1).ToString();
+                buttonPrevious.Enabled = true;
+                LoadData();
+            }
+        }
+
+        private void buttonPrevious_Click(object sender, EventArgs e)
+        {
+            if ((currentPage - 1) >= 0)
+            {
+                currentPage--;
+                textBoxPage.Text = (currentPage + 1).ToString();
+                buttonNext.Enabled = true;
+                if (currentPage == 0)
+                {
+                    buttonPrevious.Enabled = false;
+                }
+                LoadData();
             }
         }
     }

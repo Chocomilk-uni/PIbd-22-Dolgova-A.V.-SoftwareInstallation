@@ -30,11 +30,18 @@ namespace SoftwareInstallationFileImplement.Implementations
                 return null;
             }
 
+            if (model.ToSkip.HasValue && model.ToTake.HasValue && !model.ClientId.HasValue)
+            {
+                return source.MessageInfos.Skip((int)model.ToSkip).Take((int)model.ToTake)
+                .Select(CreateModel).ToList();
+            }
             return source.MessageInfos
-                .Where(rec => (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
-                    (!model.ClientId.HasValue && rec.DateDelivery.Date == model.DateDelivery.Date))
-                .Select(CreateModel)
-                .ToList();
+            .Where(rec => (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
+            (!model.ClientId.HasValue && rec.DateDelivery.Date == model.DateDelivery.Date))
+            .Skip(model.ToSkip ?? 0)
+            .Take(model.ToTake ?? source.MessageInfos.Count())
+            .Select(CreateModel)
+            .ToList();
         }
 
         public void Insert(MessageInfoBindingModel model)

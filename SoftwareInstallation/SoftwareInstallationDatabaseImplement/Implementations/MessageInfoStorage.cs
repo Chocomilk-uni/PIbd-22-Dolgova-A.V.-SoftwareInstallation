@@ -33,21 +33,20 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
             {
                 return null;
             }
-
             using (var context = new SoftwareInstallationDatabase())
             {
+                if (model.ToSkip.HasValue && model.ToTake.HasValue && !model.ClientId.HasValue)
+                {
+                    return context.MessageInfos.Skip((int)model.ToSkip).Take((int)model.ToTake)
+                    .Select(CreateModel).ToList();
+                }
                 return context.MessageInfos
-                    .Where(rec => (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
-                    (!model.ClientId.HasValue && rec.DateDelivery.Date == model.DateDelivery.Date))
-                    .Select(rec => new MessageInfoViewModel
-                    {
-                        MessageId = rec.MessageId,
-                        SenderName = rec.SenderName,
-                        DateDelivery = rec.DateDelivery,
-                        Subject = rec.Subject,
-                        Body = rec.Body
-                    })
-                    .ToList();
+                .Where(rec => (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
+                (!model.ClientId.HasValue && rec.DateDelivery.Date == model.DateDelivery.Date))
+                .Skip(model.ToSkip ?? 0)
+                .Take(model.ToTake ?? context.MessageInfos.Count())
+                .Select(CreateModel)
+                .ToList();
             }
         }
 
@@ -74,6 +73,17 @@ namespace SoftwareInstallationDatabaseImplement.Implementations
 
                 context.SaveChanges();
             }
+        }
+        private MessageInfoViewModel CreateModel(MessageInfo model)
+        {
+            return new MessageInfoViewModel
+            {
+                MessageId = model.MessageId,
+                SenderName = model.SenderName,
+                DateDelivery = model.DateDelivery,
+                Subject = model.Subject,
+                Body = model.Body
+            };
         }
     }
 }

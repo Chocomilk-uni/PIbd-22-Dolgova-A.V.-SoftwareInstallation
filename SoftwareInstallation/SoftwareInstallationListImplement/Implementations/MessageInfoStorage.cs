@@ -33,21 +33,39 @@ namespace SoftwareInstallationListImplement.Implementations
                 return null;
             }
 
+            int toSkip = model.ToSkip ?? 0;
+            int toTake = model.ToTake ?? source.MessageInfos.Count;
+
             List<MessageInfoViewModel> result = new List<MessageInfoViewModel>();
+
+            if (model.ToSkip.HasValue && model.ToTake.HasValue && !model.ClientId.HasValue)
+            {
+                foreach (var messageInfo in source.MessageInfos)
+                {
+                    if (toSkip > 0) { toSkip--; continue; }
+                    if (toTake > 0)
+                    {
+                        result.Add(CreateModel(messageInfo));
+                        toTake--;
+                    }
+                }
+                return result;
+            }
 
             foreach (var messageInfo in source.MessageInfos)
             {
-                if ((model.ClientId.HasValue && messageInfo.ClientId == model.ClientId) 
-                    || (!model.ClientId.HasValue && messageInfo.DateDelivery.Date == model.DateDelivery.Date))
+                if ((model.ClientId.HasValue && messageInfo.ClientId == model.ClientId) ||
+                    (!model.ClientId.HasValue && messageInfo.DateDelivery.Date == model.DateDelivery.Date))
                 {
-                    result.Add(CreateModel(messageInfo));
+                    if (toSkip > 0) { toSkip--; continue; }
+                    if (toTake > 0)
+                    {
+                        result.Add(CreateModel(messageInfo));
+                        toTake--;
+                    }
                 }
             }
-            if (result.Count > 0)
-            {
-                return result;
-            }
-            return null;
+            return result;
         }
 
         public void Insert(MessageInfoBindingModel model)

@@ -23,5 +23,11 @@ namespace SoftwareInstallationBusinessLogic.BindingModels
 
         [DataMember]
         public DateTime DateDelivery { get; set; }
+
+        [DataMember]
+        public int? ToSkip { get; set; }
+
+        [DataMember]
+        public int? ToTake { get; set; }
     }
 }
