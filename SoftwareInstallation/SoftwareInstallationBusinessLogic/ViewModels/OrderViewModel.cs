@@ -8,7 +8,7 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
     [DataContract]
     public class OrderViewModel
     {
-        [Column(title: "Номер", width: 50)]
+        [Column(title: "Номер", gridViewAutoSize: GridViewAutoSize.ColumnHeader)]
         [DataMember]
         public int Id { get; set; }
 
@@ -21,19 +21,19 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
         [DataMember]
         public int? ImplementerId { get; set; }
 
-        [Column(title: "Клиент", width: 150)]
+        [Column(title: "Клиент", gridViewAutoSize: GridViewAutoSize.AllCells)]
         [DataMember]
         public string ClientFIO { get; set; }
 
-        [Column(title: "Исполнитель", width: 150)]
+        [Column(title: "Исполнитель", gridViewAutoSize: GridViewAutoSize.AllCells)]
         [DataMember]
         public string ImplementerFIO { get; set; }
 
-        [Column(title: "Пакет", gridViewAutoSize: GridViewAutoSize.Fill)]
+        [Column(title: "Пакет", gridViewAutoSize: GridViewAutoSize.AllCells)]
         [DataMember]
         public string PackageName { get; set; }
 
-        [Column(title: "Количество", width: 30)]
+        [Column(title: "Количество", gridViewAutoSize: GridViewAutoSize.Fill)]
         [DataMember]
         public int Count { get; set; }
 

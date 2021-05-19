@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using System.Reflection;
-using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace SoftwareInstallationBusinessLogic.BusinessLogic
 {
@@ -58,35 +57,20 @@ namespace SoftwareInstallationBusinessLogic.BusinessLogic
         {
             var records = GetList<T>();
             T obj = new T();
-            var typeName = obj.GetType().Name;
-            if (records != null)
+            XmlSerializer jsonFormatter = new XmlSerializer(typeof(List<T>));
+            using (FileStream fs = new FileStream(string.Format("{0}/{1}.xml", folderName, obj.GetType().Name), FileMode.OpenOrCreate))
             {
-                var root = new XElement(typeName + 's');
-
-                foreach (var record in records)
-                {
-                    var elem = new XElement(typeName);
-                    foreach (var member in obj.GetType().GetMembers()
-                        .Where(rec => rec.MemberType != MemberTypes.Method &&
-                        rec.MemberType != MemberTypes.Constructor &&
-                        !rec.ToString().Contains(".Models.")))
-                    {
-                        elem.Add(new XElement(member.Name, record.GetType().GetProperty(member.Name)?.GetValue(record) ?? "null"));
-                    }
-                    root.Add(elem);
-                }
-                XDocument xDocument = new XDocument(root);
-                xDocument.Save(string.Format("{0}/{1}.xml", folderName, typeName));
+                jsonFormatter.Serialize(fs, records);
             }
         }
 
         //Получение сборки
         protected abstract Assembly GetAssembly();
 
-        //Получение списка записей для каждого класса-модели
+        //Получение списка классов-моделей
         protected abstract List<PropertyInfo> GetFullList();
 
-        //Получение списка классов-моделей
+        //Получение списка записей для каждого класса-модели
         protected abstract List<T> GetList<T>() where T : class, new();
     }
 }
