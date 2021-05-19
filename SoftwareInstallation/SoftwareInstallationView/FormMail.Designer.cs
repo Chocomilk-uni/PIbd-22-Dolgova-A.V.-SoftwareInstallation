@@ -33,6 +33,9 @@ namespace SoftwareInstallationView
             this.buttonPrevious = new System.Windows.Forms.Button();
             this.buttonNext = new System.Windows.Forms.Button();
             this.textBoxPage = new System.Windows.Forms.TextBox();
+            this.buttonGetPage = new System.Windows.Forms.Button();
+            this.textBoxGetPage = new System.Windows.Forms.TextBox();
+            this.labelPage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,8 +58,9 @@ namespace SoftwareInstallationView
             // buttonPrevious
             // 
             this.buttonPrevious.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonPrevious.Enabled = false;
             this.buttonPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrevious.Location = new System.Drawing.Point(310, 121);
+            this.buttonPrevious.Location = new System.Drawing.Point(188, 121);
             this.buttonPrevious.Name = "buttonPrevious";
             this.buttonPrevious.Size = new System.Drawing.Size(110, 38);
             this.buttonPrevious.TabIndex = 2;
@@ -68,7 +72,7 @@ namespace SoftwareInstallationView
             // 
             this.buttonNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNext.Location = new System.Drawing.Point(516, 121);
+            this.buttonNext.Location = new System.Drawing.Point(397, 121);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(110, 38);
             this.buttonNext.TabIndex = 3;
@@ -79,19 +83,50 @@ namespace SoftwareInstallationView
             // textBoxPage
             // 
             this.textBoxPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.textBoxPage.Location = new System.Drawing.Point(440, 132);
+            this.textBoxPage.Location = new System.Drawing.Point(321, 132);
             this.textBoxPage.Name = "textBoxPage";
             this.textBoxPage.ReadOnly = true;
             this.textBoxPage.Size = new System.Drawing.Size(53, 22);
             this.textBoxPage.TabIndex = 4;
-            this.textBoxPage.Text = "0";
+            this.textBoxPage.Text = "1";
             this.textBoxPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // buttonGetPage
+            // 
+            this.buttonGetPage.Location = new System.Drawing.Point(784, 121);
+            this.buttonGetPage.Name = "buttonGetPage";
+            this.buttonGetPage.Size = new System.Drawing.Size(106, 38);
+            this.buttonGetPage.TabIndex = 5;
+            this.buttonGetPage.Text = "Перейти";
+            this.buttonGetPage.UseVisualStyleBackColor = true;
+            this.buttonGetPage.Click += new System.EventHandler(this.buttonGetPage_Click);
+            // 
+            // textBoxGetPage
+            // 
+            this.textBoxGetPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBoxGetPage.Location = new System.Drawing.Point(725, 129);
+            this.textBoxGetPage.Name = "textBoxGetPage";
+            this.textBoxGetPage.Size = new System.Drawing.Size(53, 22);
+            this.textBoxGetPage.TabIndex = 6;
+            this.textBoxGetPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // labelPage
+            // 
+            this.labelPage.AutoSize = true;
+            this.labelPage.Location = new System.Drawing.Point(643, 132);
+            this.labelPage.Name = "labelPage";
+            this.labelPage.Size = new System.Drawing.Size(76, 17);
+            this.labelPage.TabIndex = 7;
+            this.labelPage.Text = "Страница:";
             // 
             // FormMail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(902, 175);
+            this.Controls.Add(this.labelPage);
+            this.Controls.Add(this.textBoxGetPage);
+            this.Controls.Add(this.buttonGetPage);
             this.Controls.Add(this.textBoxPage);
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.buttonPrevious);
@@ -111,5 +146,8 @@ namespace SoftwareInstallationView
         private System.Windows.Forms.Button buttonPrevious;
         private System.Windows.Forms.Button buttonNext;
         private System.Windows.Forms.TextBox textBoxPage;
+        private System.Windows.Forms.Button buttonGetPage;
+        private System.Windows.Forms.TextBox textBoxGetPage;
+        private System.Windows.Forms.Label labelPage;
     }
 }
