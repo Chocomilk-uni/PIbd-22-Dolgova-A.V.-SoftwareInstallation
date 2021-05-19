@@ -37,7 +37,7 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
         [DataMember]
         public int Count { get; set; }
 
-        [Column(title: "Сумма", gridViewAutoSize: GridViewAutoSize.ColumnHeader)]
+        [Column(title: "Сумма", format: "{0:C}", gridViewAutoSize: GridViewAutoSize.ColumnHeader)]
         [DataMember]
         public decimal Sum { get; set; }
 
@@ -45,11 +45,11 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
         [DataMember]
         public OrderStatus Status { get; set; }
 
-        [Column(title: "Дата создания", gridViewAutoSize: GridViewAutoSize.AllCells)]
+        [Column(title: "Дата создания", format: "dd/MM/yyyy", gridViewAutoSize: GridViewAutoSize.AllCells)]
         [DataMember]
         public DateTime DateCreate { get; set; }
 
-        [Column(title: "Дата выполнения", gridViewAutoSize: GridViewAutoSize.AllCells)]
+        [Column(title: "Дата выполнения", format: "dd/MM/yyyy", gridViewAutoSize: GridViewAutoSize.AllCells)]
         [DataMember]
         public DateTime? DateImplement { get; set; }
  
