@@ -16,7 +16,7 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
         [Column(title: "ФИО ответственного", gridViewAutoSize: GridViewAutoSize.AllCells)]
         public string WarehouseManagerFullName { get; set; }
 
-        [Column(title: "Дата создания", gridViewAutoSize: GridViewAutoSize.AllCells)]
+        [Column(title: "Дата создания", format: "dd/MM/yyyy", gridViewAutoSize: GridViewAutoSize.AllCells)]
         public DateTime DateCreate { get; set; }
         public Dictionary<int, (string, int)> WarehouseComponents { get; set; }
     }

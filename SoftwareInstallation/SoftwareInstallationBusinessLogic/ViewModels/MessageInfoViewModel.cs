@@ -15,7 +15,7 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
         [DataMember]
         public string SenderName { get; set; }
 
-        [Column(title: "Дата письма", width: 100)]
+        [Column(title: "Дата письма", format: "dd/MM/yyyy", width: 100)]
         [DataMember]
         public DateTime DateDelivery { get; set; }
 

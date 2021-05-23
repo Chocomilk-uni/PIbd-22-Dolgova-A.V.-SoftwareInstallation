@@ -16,7 +16,7 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
         [DataMember]
         public string PackageName { get; set; }
 
-        [Column(title: "Цена", width: 100)]
+        [Column(title: "Цена", format: "c2", width: 100)]
         [DataMember]
         public decimal Price { get; set; }
 

@@ -43,6 +43,7 @@ namespace SoftwareInstallationView
                         DateTo = dateTimePickerDateTo.Value
                     }
                 });
+
                 ReportDataSource source = new ReportDataSource("DataSetOrders", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();

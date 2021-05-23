@@ -37,7 +37,7 @@ namespace SoftwareInstallationBusinessLogic.ViewModels
         [DataMember]
         public int Count { get; set; }
 
-        [Column(title: "Сумма", format: "#.#############₽", gridViewAutoSize: GridViewAutoSize.ColumnHeader)]
+        [Column(title: "Сумма", format: "c2", gridViewAutoSize: GridViewAutoSize.ColumnHeader)]
         [DataMember]
         public decimal Sum { get; set; }
 
