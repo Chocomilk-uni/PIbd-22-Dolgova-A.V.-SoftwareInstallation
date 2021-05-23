@@ -9,7 +9,7 @@ namespace SoftwareInstallationDatabaseImplement.Models
         public int Id { get; set; }
 
         [Required]
-        public string FIO { get; set; }
+        public string ClientFIO { get; set; }
 
         [Required]
         public string Email { get; set; }
