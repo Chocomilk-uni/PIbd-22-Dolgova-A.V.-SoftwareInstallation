@@ -47,7 +47,7 @@ namespace SoftwareInstallationListImplement.Implementations
             {
                 if (client.Id == order.ClientId)
                 {
-                    clientFIO = client.FIO;
+                    clientFIO = client.ClientFIO;
                 }
             }
             foreach (var implementer in source.Implementers)

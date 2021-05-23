@@ -179,7 +179,7 @@ namespace SoftwareInstallationFileImplement
                     list.Add(new Client
                     {
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
-                        FIO = elem.Element("FIO").Value,
+                        ClientFIO = elem.Element("FIO").Value,
                         Email = elem.Element("Email").Value,
                         Password = elem.Element("Password").Value
                     });
@@ -317,7 +317,7 @@ namespace SoftwareInstallationFileImplement
                 {
                     xElement.Add(new XElement("Client",
                         new XAttribute("Id", client.Id),
-                        new XElement("FIO", client.FIO),
+                        new XElement("FIO", client.ClientFIO),
                         new XElement("Email", client.Email),
                         new XElement("Password", client.Password)));
                 }
