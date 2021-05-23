@@ -288,7 +288,7 @@ namespace SoftwareInstallationFileImplement
                 {
                     xElement.Add(new XElement("Client",
                         new XAttribute("Id", client.Id),
-                        new XElement("FIO", client.ClientFIO),
+                        new XElement("ClientFIO", client.ClientFIO),
                         new XElement("Email", client.Email),
                         new XElement("Password", client.Password)));
                 }
