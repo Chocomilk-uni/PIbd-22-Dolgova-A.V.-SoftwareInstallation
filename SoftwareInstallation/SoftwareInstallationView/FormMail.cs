@@ -35,10 +35,7 @@ namespace SoftwareInstallationView
         {
             try
             {
-                var list = logic.Read(new MessageInfoBindingModel { ToSkip = currentPage * mailsOnPage, ToTake = mailsOnPage + 1});
-
-                var method = typeof(Program).GetMethod("ConfigGrid");
-                MethodInfo generic = method.MakeGenericMethod(typeof(MessageInfoViewModel));
+                var list = logic.Read(new MessageInfoBindingModel { ToSkip = currentPage * mailsOnPage, ToTake = mailsOnPage + 1 });
 
                 hasNext = !(list.Count <= mailsOnPage);
 
@@ -51,7 +48,7 @@ namespace SoftwareInstallationView
                     buttonNext.Enabled = false;
                 }
 
-                generic.Invoke(this, new object[] { list.Take(mailsOnPage).ToList(), dataGridView });
+                Program.ConfigGrid(logic.Read(null), dataGridView);
             }
             catch (Exception ex)
             {

@@ -1,6 +1,7 @@
 ﻿using SoftwareInstallationBusinessLogic.BindingModels;
 using SoftwareInstallationBusinessLogic.BusinessLogic;
 using System;
+using System.Reflection;
 using System.Windows.Forms;
 using Unity;
 
@@ -89,10 +90,16 @@ namespace SoftwareInstallationView
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    report.SavePackagesToWordFile(new ReportBindingModel
-                    {
-                        FileName = dialog.FileName
-                    });
+                    MethodInfo method = report.GetType().GetMethod("SavePackagesToWordFile");
+
+                    method.Invoke(report, new object[]
+                        {
+                            new ReportBindingModel
+                            {
+                                FileName = dialog.FileName
+                            }
+                        });
+
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 }
@@ -105,10 +112,16 @@ namespace SoftwareInstallationView
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    report.SaveWarehousesToWordFile(new ReportBindingModel
-                    {
-                        FileName = dialog.FileName
-                    });
+                    MethodInfo method = report.GetType().GetMethod("SaveWarehousesToWordFile");
+
+                    method.Invoke(report, new object[]
+                        {
+                            new ReportBindingModel
+                            {
+                                FileName = dialog.FileName
+                            }
+                        });
+
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 }
